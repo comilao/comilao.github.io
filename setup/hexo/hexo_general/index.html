@@ -23,7 +23,7 @@
 <meta name="description" content="PrefaceAs a new year resolution, I would like to be better than last year. In the technical aspect, I think starting a blog might be a good way (provided I could keep this habit). I used hexo before,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo Setup General">
-<meta property="og:url" content="http://example.com/setup/hexo/hexo_setup_general/index.html">
+<meta property="og:url" content="http://example.com/setup/hexo/hexo_general/index.html">
 <meta property="og:site_name" content="Comilao Learning">
 <meta property="og:description" content="PrefaceAs a new year resolution, I would like to be better than last year. In the technical aspect, I think starting a blog might be a good way (provided I could keep this habit). I used hexo before,">
 <meta property="og:locale" content="en_US">
@@ -35,11 +35,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/setup/hexo/hexo_setup_general/">
+<link rel="canonical" href="http://example.com/setup/hexo/hexo_general/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/setup/hexo/hexo_setup_general/","path":"setup/hexo/hexo_setup_general/","title":"Hexo Setup General"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/setup/hexo/hexo_general/","path":"setup/hexo/hexo_general/","title":"Hexo Setup General"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Hexo Setup General | Comilao Learning</title>
@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -170,7 +170,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/setup/hexo/hexo_setup_general/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/setup/hexo/hexo_general/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -221,7 +221,11 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>As a new year resolution, I would like to be better than last year. In the technical aspect, I think starting a blog might be a good way (provided I could keep this habit). I used hexo before, however, due to issues with organizing blog articles and the ugly defaul theme, I stopped after a few articles. After organizing all my browser bookmarks last week, I got some inspirations on how to organize things, hence I am starting a hexo blog again. Let’s see how far this time I could go.</p>
-<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>More could be found on <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo website</a>:<br>Nodejs<br>Git</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>More could be found on <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo website</a>:</p>
+<ul>
+<li>Nodejs</li>
+<li>Git</li>
+</ul>
 <h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Install Hexo globally with <code>npm</code> on the machine:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
@@ -229,10 +233,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><strong>Note:</strong> This section contains my preference (Marked with <em>Personally</em>).</p>
-<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>Site settings could be modified in <code>_config.yml</code>.<br><em>Personally</em>, I feel <code>categories</code> in the <code>permalink</code> can help with better organization.</p>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>Site settings could be modified in <code>_config.yml</code>.</p>
+<p><em>Personally</em>, I feel <code>categories</code> in the <code>permalink</code> can help with better organization.</p>
 <figure class="highlight diff"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">...</span><br><span class="line"><span class="deletion">- permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="addition">+ permalink: :category/:name/</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Post-Layout"><a href="#Post-Layout" class="headerlink" title="Post Layout"></a>Post Layout</h3><p><em>Personally</em>, I prefer to add <code>updated</code> and <code>categories</code> in the default post layout, this two extra properties can help with better organization.\</p>
+<h3 id="Post-Layout"><a href="#Post-Layout" class="headerlink" title="Post Layout"></a>Post Layout</h3><p><em>Personally</em>, I prefer to add <code>updated</code> and <code>categories</code> in the default post layout, this two extra properties can help with better organization.</p>
 <figure class="highlight diff"><figcaption><span>./scaffolds/post.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">---</span></span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="addition">+ updated:</span></span><br><span class="line"><span class="addition">+ categories:</span></span><br><span class="line">tags:</span><br><span class="line"><span class="comment">---</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><p><em>Personally</em>, the default theme is not very aesthetic appealing to me. I decided to change to <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Next</a></p>
@@ -270,12 +275,9 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/uncategorized/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
-                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/setup/hexo/hexo_setup_gh_pages/" rel="next" title="Hexo Setup GitHub Pages">
+                <a href="/setup/hexo/hexo_gh_pages/" rel="next" title="Hexo Setup GitHub Pages">
                   Hexo Setup GitHub Pages <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
