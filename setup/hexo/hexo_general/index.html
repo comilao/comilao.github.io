@@ -133,18 +133,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -253,9 +253,12 @@
 <h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>Site settings could be modified in <code>_config.yml</code>.</p>
 <p><em>Personally</em>, I feel <code>categories</code> in the <code>permalink</code> can help with better organization.</p>
 <figure class="highlight diff"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">...</span><br><span class="line"><span class="deletion">- permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="addition">+ permalink: :category/:name/</span></span><br></pre></td></tr></table></figure>
-<p>Difference between <code>:title</code> and <code>:name</code>:<br><code>:title</code> is filename relative to <code>source/_posts</code> folder, whereas <code>:name</code> is just filename.</p>
+
+<p>Difference between <code>:title</code> and <code>:name</code>:</p>
+<p><code>:title</code> is filename relative to <code>source/_posts</code> folder, whereas <code>:name</code> is just filename.</p>
 <p>For example, content below at the start of the markdown file with different <code>permalink</code> setting generates different <code>permalink</code>. (Note the extra 2022 for <code>:title</code> setting)</p>
 <figure class="highlight yaml"><figcaption><span>source/_posts/2022/hello-world.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2022-01-21 17:01:34</span></span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -277,23 +280,31 @@
 
 <h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><p><em>Personally</em>, the default theme is not very aesthetic appealing to me. I decided to change to <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Next</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;hexo_folder&gt;</span><br><span class="line">npm install hexo-theme-next</span><br><span class="line"><span class="comment"># optional: remove landscape theme node package and configuration file</span></span><br><span class="line">npm uninstall hexo-theme-landscape</span><br><span class="line">rm _config.landscape.yml</span><br></pre></td></tr></table></figure>
+
 <p>Change theme to next:</p>
 <figure class="highlight diff"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line"><span class="deletion">- theme: landscape</span></span><br><span class="line"><span class="addition">+ theme: next</span></span><br></pre></td></tr></table></figure>
 
 <p>Customize next theme (Copy theme config file to <code>hexo_folder</code> root directory):</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># copy command for installation with npm</span></span><br><span class="line">cp node_modules/hexo-theme-next/_config.yml _config.next.yml</span><br></pre></td></tr></table></figure>
 
-<p>My preferred configuration:</p>
-<ul>
-<li>Change theme to Gemini.<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes</span><br><span class="line"><span class="deletion">- scheme: Muse</span></span><br><span class="line"><span class="addition">+ #scheme: Muse</span></span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line"><span class="deletion">- #scheme: Gemini</span></span><br><span class="line"><span class="addition">+ scheme: Gemini</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>My preferred Scheme is Gemini.</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes</span><br><span class="line"><span class="deletion">- scheme: Muse</span></span><br><span class="line"><span class="addition">+ #scheme: Muse</span></span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line"><span class="deletion">- #scheme: Gemini</span></span><br><span class="line"><span class="addition">+ scheme: Gemini</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="Frequently-Used-Commands"><a href="#Frequently-Used-Commands" class="headerlink" title="Frequently Used Commands"></a>Frequently Used Commands</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt; -p [path_to_article_file]</span><br><span class="line"><span class="comment"># short form</span></span><br><span class="line">hexo n [layout] &lt;title&gt; -p [path_to_article_file]</span><br></pre></td></tr></table></figure>
-<p>Creates a new article.<br>If no <code>layout</code> is specified, <code>default_layout</code> from <code>_config.yml</code> is used. (That is why I changed <code>scaffolds/post.md</code> described in <code>Configuration</code> sections.)<br>If <code>title</code> contains space inside, surround it with quotation marks.<br><em>Personally</em>, I prefer to specify the path to article file when creating a new article, hence I added this <code>-p [path_to_article_file]</code> to the command.<br><strong>Note:</strong><br>| <code>path_to_article_file</code> parameter | Actual file path created |<br>| — | ———– |<br>| <code>setup</code> | <code>setup.md</code> |<br>| <code>setup/hexo_1.md</code> | <code>setup/hexo_1.md</code> |<br>| <code>setup/</code> | <code>setup/.md</code> |</p>
+
+<p>Creates a new article.</p>
+<p>If no <code>layout</code> is specified, <code>default_layout</code> from <code>_config.yml</code> is used. (That is why I changed <code>scaffolds/post.md</code> described in <code>Configuration</code> sections.)</p>
+<p>If <code>title</code> contains space inside, surround it with quotation marks.</p>
+<p><em>Personally</em>, I prefer to specify the path to article file when creating a new article, hence I added this <code>-p [path_to_article_file]</code> to the command.</p>
+<p><strong>Note:</strong><br>| <code>path_to_article_file</code> parameter | Actual file path created |<br>| — | ———– |<br>| <code>setup</code> | <code>setup.md</code> |<br>| <code>setup/hexo_1.md</code> | <code>setup/hexo_1.md</code> |<br>| <code>setup/</code> | <code>setup/.md</code> |</p>
 <h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line"><span class="comment"># short form</span></span><br><span class="line">hexo s</span><br><span class="line"><span class="comment"># serving static files</span></span><br><span class="line">hexo s -s</span><br></pre></td></tr></table></figure>
+
 <p>Starts a local server at <code>http://localhost:4000</code> by default.</p>
 <h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line"><span class="comment"># short form</span></span><br><span class="line">hexo g</span><br><span class="line"><span class="comment"># deploy after generation</span></span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
 <p>Generates static files locally.</p>
 <h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
 <p>Cleans the cache file (db.json) and generated files (public).</p>
 <p>If changing a certain setting does not take effect in the generated static files, running this command and generate static files again could solve the problem. (The favorite restart/reset solving the issue🤣)</p>
 

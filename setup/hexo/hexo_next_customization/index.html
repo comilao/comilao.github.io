@@ -32,7 +32,7 @@
 <meta property="article:author" content="Ma Cong">
 <meta property="article:tag" content="setup">
 <meta property="article:tag" content="hexo">
-<meta property="article:tag" content="hexo_next_theme">
+<meta property="article:tag" content="hexo next theme">
 <meta name="twitter:card" content="summary">
 
 
@@ -134,18 +134,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -251,11 +251,12 @@
 <figure class="highlight diff"><figcaption><span>_config.next.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">favicon:</span><br><span class="line"><span class="deletion">-  small: /images/favicon-16x16-next.png</span></span><br><span class="line"><span class="deletion">-  medium: /images/favicon-32x32-next.png</span></span><br><span class="line"><span class="deletion">-  apple_touch_icon: /images/apple-touch-icon-next.png</span></span><br><span class="line"><span class="addition">+  small: /images/favicon-16x16-reading.png</span></span><br><span class="line"><span class="addition">+  medium: /images/favicon-32x32-reading.png</span></span><br><span class="line"><span class="addition">+  apple_touch_icon: /images/apple-touch-icon-reading.png</span></span><br><span class="line">  safari_pinned_tab: /images/logo.svg</span><br></pre></td></tr></table></figure>
 
 <h2 id="Display-Categories-and-Tags-Page"><a href="#Display-Categories-and-Tags-Page" class="headerlink" title="Display Categories and Tags Page"></a>Display Categories and Tags Page</h2><p>I prefer to use categories and tags pages for a better organization.</p>
-<p>To make some buttons like <code>Categories </code> and <code>Tags</code> appear in the <code>Menu Settings</code> section, I first change next theme configuration file.</p>
+<p>To make some buttons like <code>Categories</code> and <code>Tags</code> appear in the <code>Menu Settings</code> section, I first change next theme configuration file.</p>
 <figure class="highlight diff"><figcaption><span>_config.next.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Usage: `Key: /link/ || icon`</span><br><span class="line"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-sensitive.</span><br><span class="line"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span><br><span class="line"># External url should start with http:// or https://</span><br><span class="line">menu:</span><br><span class="line"><span class="deletion">-  #home: / || fa fa-home</span></span><br><span class="line"><span class="addition">+  home: / || fa fa-home</span></span><br><span class="line">  #about: /about/ || fa fa-user</span><br><span class="line"><span class="deletion">-  #tags: /tags/ || fa fa-tags</span></span><br><span class="line"><span class="deletion">-  #categories: /categories/ || fa fa-th</span></span><br><span class="line"><span class="deletion">-  #archives: /archives/ || fa fa-archive</span></span><br><span class="line"><span class="addition">+  tags: /tags/ || fa fa-tags</span></span><br><span class="line"><span class="addition">+  categories: /categories/ || fa fa-th</span></span><br><span class="line"><span class="addition">+  archives: /archives/ || fa fa-archive</span></span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonweal: /404/ || fa fa-heartbeat</span><br></pre></td></tr></table></figure>
 
 <p>Besides changing next theme configuration file, <code>source/categories/index.md</code> and <code>source/tags/index.md</code> also need to be created with following contents.</p>
 <figure class="highlight yml"><figcaption><span>source/categories/index.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Categories</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2022-01-23 18:08:00</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&quot;categories&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight yml"><figcaption><span>source/tags/index.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Tags</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2022-01-23 18:08:00</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&quot;tags&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Read-More-Button"><a href="#Read-More-Button" class="headerlink" title="Read More Button"></a>Read More Button</h2><p>By default, I realised the whole post is displayed on the home page, which means lots of scrolling is required to view the next post. By adding this line <code>&lt;!-- more --&gt;</code> in a markdown file, a <code>Read more &gt;&gt;</code> button will be generated to minimize the post height in the home page.</p>
@@ -267,9 +268,11 @@
 <p>After some research online, I decided to go for this <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/issues/138">configuration</a>.</p>
 <ul>
 <li><code>async: true</code> allows all elements to load together</li>
-<li><code>post_block: none</code> allows no css animation to be applied when loading an element<figure class="highlight diff"><figcaption><span>_config.next.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Animation Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Use Animate.css to animate everything.</span><br><span class="line"># For more information: https://animate.style</span><br><span class="line">motion:</span><br><span class="line">  enable: true</span><br><span class="line"><span class="deletion">-  async: false</span></span><br><span class="line"><span class="addition">+  async: true</span></span><br><span class="line">  transition:</span><br><span class="line">    # All available transition variants: https://theme-next.js.org/animate/</span><br><span class="line"><span class="deletion">-    post_block: fadeIn</span></span><br><span class="line"><span class="deletion">-    post_header: fadeInDown</span></span><br><span class="line"><span class="deletion">-    post_body: fadeInDown</span></span><br><span class="line"><span class="deletion">-    coll_header: fadeInLeft</span></span><br><span class="line"><span class="addition">+    post_block: none</span></span><br><span class="line"><span class="addition">+    post_header: none</span></span><br><span class="line"><span class="addition">+    post_body: none</span></span><br><span class="line"><span class="addition">+    coll_header: none</span></span><br><span class="line">    # Only for Pisces | Gemini.</span><br><span class="line"><span class="deletion">-    sidebar: fadeInUp</span></span><br><span class="line"><span class="addition">+    sidebar: none</span></span><br></pre></td></tr></table></figure>
-However, the menu area above sidebar still has some css animation effects applied, I am not sure how to change it though.</li>
+<li><code>post_block: none</code> allows no css animation to be applied when loading an element</li>
 </ul>
+<figure class="highlight diff"><figcaption><span>_config.next.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Animation Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Use Animate.css to animate everything.</span><br><span class="line"># For more information: https://animate.style</span><br><span class="line">motion:</span><br><span class="line">  enable: true</span><br><span class="line"><span class="deletion">-  async: false</span></span><br><span class="line"><span class="addition">+  async: true</span></span><br><span class="line">  transition:</span><br><span class="line">    # All available transition variants: https://theme-next.js.org/animate/</span><br><span class="line"><span class="deletion">-    post_block: fadeIn</span></span><br><span class="line"><span class="deletion">-    post_header: fadeInDown</span></span><br><span class="line"><span class="deletion">-    post_body: fadeInDown</span></span><br><span class="line"><span class="deletion">-    coll_header: fadeInLeft</span></span><br><span class="line"><span class="addition">+    post_block: none</span></span><br><span class="line"><span class="addition">+    post_header: none</span></span><br><span class="line"><span class="addition">+    post_body: none</span></span><br><span class="line"><span class="addition">+    coll_header: none</span></span><br><span class="line">    # Only for Pisces | Gemini.</span><br><span class="line"><span class="deletion">-    sidebar: fadeInUp</span></span><br><span class="line"><span class="addition">+    sidebar: none</span></span><br></pre></td></tr></table></figure>
+
+<p>However, the menu area above sidebar still has some css animation effects applied, I am not sure how to change it though.</p>
 
     </div>
 
@@ -281,7 +284,7 @@ However, the menu area above sidebar still has some css animation effects applie
           <div class="post-tags">
               <a href="/tags/setup/" rel="tag"># setup</a>
               <a href="/tags/hexo/" rel="tag"># hexo</a>
-              <a href="/tags/hexo-next-theme/" rel="tag"># hexo_next_theme</a>
+              <a href="/tags/hexo-next-theme/" rel="tag"># hexo next theme</a>
           </div>
 
         
@@ -293,6 +296,9 @@ However, the menu area above sidebar still has some css animation effects applie
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/setup/vscode/vscode_markdown/" rel="next" title="Markdown with VS Code">
+                  Markdown with VS Code <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

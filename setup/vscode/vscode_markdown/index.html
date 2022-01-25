@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-reading.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-reading.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-reading.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"none","post_header":"none","post_body":"none","coll_header":"none","sidebar":"none"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="PrefaceAs I will be writing lots of Markdowns, I spend some time researching VS Code Markdown extensions and creating snippets to enhance the writing experience.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown with VS Code">
+<meta property="og:url" content="http://example.com/setup/vscode/vscode_markdown/index.html">
+<meta property="og:site_name" content="Comilao Learning">
+<meta property="og:description" content="PrefaceAs I will be writing lots of Markdowns, I spend some time researching VS Code Markdown extensions and creating snippets to enhance the writing experience.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-24T14:36:27.000Z">
+<meta property="article:modified_time" content="2022-01-24T16:00:00.000Z">
+<meta property="article:author" content="Ma Cong">
+<meta property="article:tag" content="setup">
+<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="vscode extension">
+<meta property="article:tag" content="markdown">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/setup/vscode/vscode_markdown/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/setup/vscode/vscode_markdown/","path":"setup/vscode/vscode_markdown/","title":"Markdown with VS Code"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Markdown with VS Code | Comilao Learning</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Comilao Learning</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions"><span class="nav-number">2.</span> <span class="nav-text">Extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#markdownlint"><span class="nav-number">2.1.</span> <span class="nav-text">markdownlint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-Header-Coloring"><span class="nav-number">2.2.</span> <span class="nav-text">Markdown Header Coloring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-Preview-GitHub-Styling"><span class="nav-number">2.3.</span> <span class="nav-text">Markdown Preview GitHub Styling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Snippets"><span class="nav-number">3.</span> <span class="nav-text">Snippets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-Quick-Suggestion"><span class="nav-number">3.1.</span> <span class="nav-text">Enable Quick Suggestion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-Snippets"><span class="nav-number">3.2.</span> <span class="nav-text">Markdown Snippets</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Referrence"><span class="nav-number">4.</span> <span class="nav-text">Referrence</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ma Cong</p>
+  <div class="site-description" itemprop="description">A place to keep track of my learnings</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/setup/vscode/vscode_markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ma Cong">
+      <meta itemprop="description" content="A place to keep track of my learnings">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Comilao Learning">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Markdown with VS Code
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-24 22:36:27" itemprop="dateCreated datePublished" datetime="2022-01-24T22:36:27+08:00">2022-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-25 00:00:00" itemprop="dateModified" datetime="2022-01-25T00:00:00+08:00">2022-01-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/setup/" itemprop="url" rel="index"><span itemprop="name">setup</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/setup/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>As I will be writing lots of Markdowns, I spend some time researching VS Code Markdown extensions and creating snippets to enhance the writing experience.</p>
+<span id="more"></span>
+
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><h3 id="markdownlint"><a href="#markdownlint" class="headerlink" title="markdownlint"></a>markdownlint</h3><p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a> applies a set of linting rules to Markdown file.</p>
+<p>To exclude certain rules, you can add following configuration to VS Code settings at <code>.vscode/settings.json</code> (This settings file only applies to Workspace level, which I recommend it over User level).</p>
+<p>Below is an example to exclude inline-html from linting:</p>
+<figure class="highlight json"><figcaption><span>vscode/settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;markdownlint.config&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// Exclude inline-html from linting</span></span><br><span class="line">    <span class="attr">&quot;MD033&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Markdown-Header-Coloring"><a href="#Markdown-Header-Coloring" class="headerlink" title="Markdown Header Coloring"></a>Markdown Header Coloring</h3><p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=satokaz.vscode-markdown-header-coloring">Markdown Header Coloring</a> colors Markdown header tags.</p>
+<p>I use a dark theme called <a target="_blank" rel="noopener" href="https://ahmadawais.com/shades-of-purple/">Shades of Purple</a> for VS Code. In this theme, the heading syntax is not very prominent, as the author says he prefers the syntax to be as hidden as possible. I like this theme a lot, but my only complaint is this <strong>hidden heading syntax</strong>, hence I find this extension extremely helpful!</p>
+<h3 id="Markdown-Preview-GitHub-Styling"><a href="#Markdown-Preview-GitHub-Styling" class="headerlink" title="Markdown Preview GitHub Styling"></a>Markdown Preview GitHub Styling</h3><p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles">Markdown Preview GitHub Styling</a> changes the built-in markdown to match GitHub’s styling.</p>
+<h2 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h2><blockquote>
+<p>Code snippets are templates that make it easier to enter repeating code patterns, such as loops or conditional-statements.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">From Snippets in VS Code</a>. (You can try <code>for</code> in a JavaScript file with VS Code to learn how to use a snippet.)</p>
+<h3 id="Enable-Quick-Suggestion"><a href="#Enable-Quick-Suggestion" class="headerlink" title="Enable Quick Suggestion"></a>Enable Quick Suggestion</h3><p>Before using snippets in a Markdown file, quick suggestions in VS Code needs to be enabled. From the <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/intellisense">Intellisense</a> page, it is enabled only for certain languages (Like JavaScript, TypeScript, JSON and etc.). Support for other languages (e.g. Python, Go and etc.) are managed by their corresponding extentions.</p>
+<p>For Markdown, we can enable quick suggestions in VS Code settings (Code -&gt; Preferences -&gt; Settings):</p>
+<ol>
+<li>Once in the settings page, you can decide whether to apply this setting to User or Workspace level by toggle between User and Workspace. (I prefer to keep language specific settings at Workspace level though.)</li>
+<li>Go to the top right corner and look for “Open Settings (JSON)” button and click it.</li>
+<li>Type <code>&quot;[markdown]&quot;</code> and select <code>[markdown]</code> from the quick suggestion popup window (Because the settings file is JSON, so quick suggestion works there 😜).</li>
+</ol>
+<h3 id="Markdown-Snippets"><a href="#Markdown-Snippets" class="headerlink" title="Markdown Snippets"></a>Markdown Snippets</h3><p>Then change the <code>[markdown]</code> settings to:</p>
+<figure class="highlight json"><figcaption><span>settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[markdown]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.unicodeHighlight.ambiguousCharacters&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;editor.wordWrap&quot;</span>: <span class="string">&quot;on&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;editor.quickSuggestions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;other&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;comments&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;strings&quot;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>After that we can start adding customized snippets for Markdown in VS Code. Go to User Snippets (Code -&gt; Preferences -&gt; User Snippets) and select <code>markdown.json</code>. Below are snippets I used:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;link&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lk&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;]($&#123;2:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with clipboard url&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link with url from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lku&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;]($CLIPBOARD)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with clipboard text&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link with name from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lkt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$CLIPBOARD]($&#123;1:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;image with clipboard url&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert image with url from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;imgu&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;![$&#123;1:alt_text&#125;]($CLIPBOARD)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with header id&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// markdown specific for hexo</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;[hexo]\n \&quot;## Header something\&quot; should be \n \&quot;Header-something\&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lkh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;](#$&#123;2:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;table&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert table&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;table&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;| Header1 | Header2 |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| --- | --- |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| content | content |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| content | content |&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;more button&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// markdown specific for hexo, but can be used to put hidden comments in markdown</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;[hexo]\n \&quot;Read More &gt;&gt;\&quot; button in blog article for hexo next theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;more&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;&lt;!-- more --&gt;&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.deepanseeralan.com/tech/enable-quick-suggestions-for-markdown-in-vscode/">Enable quick suggestions for Markdown in VS Code</a></p>
+</li>
+<li><p>Some Markdown snippets are from <a target="_blank" rel="noopener" href="https://github.com/gggwvg/vscode-snippets-markdown">vscode-snippets-markdown</a> (The use of <code>$CLIPBOARD</code> is really clever!)</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/setup/" rel="tag"># setup</a>
+              <a href="/tags/vscode/" rel="tag"># vscode</a>
+              <a href="/tags/vscode-extension/" rel="tag"># vscode extension</a>
+              <a href="/tags/markdown/" rel="tag"># markdown</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/setup/hexo/hexo_next_customization/" rel="prev" title="Hexo Next Theme Customization">
+                  <i class="fa fa-chevron-left"></i> Hexo Next Theme Customization
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ma Cong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
