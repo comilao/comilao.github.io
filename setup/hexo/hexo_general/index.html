@@ -133,13 +133,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -238,6 +238,7 @@
 <p>But firstly, I decided to fix some issues I faced before, to keep my interest and form a habbit of good structure with tags and categories.</p>
 <span id="more"></span>
 
+<hr>
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>More could be found on <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo website</a>:</p>
 <ul>
 <li>Nodejs</li>
@@ -249,6 +250,7 @@
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>Once Hexo is installed, run following commands to initialize Hexo in the target <code>&lt;folder&gt;</code>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><strong>Note:</strong> This section contains my preference (Marked with <em>Personally</em>).</p>
 <h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>Site settings could be modified in <code>_config.yml</code>.</p>
 <p><em>Personally</em>, I feel <code>categories</code> in the <code>permalink</code> can help with better organization.</p>
@@ -290,6 +292,7 @@
 <p>My preferred Scheme is Gemini.</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Scheme Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># Schemes</span><br><span class="line"><span class="deletion">- scheme: Muse</span></span><br><span class="line"><span class="addition">+ #scheme: Muse</span></span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line"><span class="deletion">- #scheme: Gemini</span></span><br><span class="line"><span class="addition">+ scheme: Gemini</span></span><br></pre></td></tr></table></figure>
 
+<hr>
 <h2 id="Frequently-Used-Commands"><a href="#Frequently-Used-Commands" class="headerlink" title="Frequently Used Commands"></a>Frequently Used Commands</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt; -p [path_to_article_file]</span><br><span class="line"><span class="comment"># short form</span></span><br><span class="line">hexo n [layout] &lt;title&gt; -p [path_to_article_file]</span><br></pre></td></tr></table></figure>
 
 <p>Creates a new article.</p>
@@ -306,7 +309,7 @@
 <h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 
 <p>Cleans the cache file (db.json) and generated files (public).</p>
-<p>If changing a certain setting does not take effect in the generated static files, running this command and generate static files again could solve the problem. (The favorite restart/reset solving the issue🤣)</p>
+<p>If changing a certain setting does not take effect in the generated static files, running this command and generate static files again could solve the problem. (The favorite restart/reset solves the issue🤣)</p>
 
     </div>
 
