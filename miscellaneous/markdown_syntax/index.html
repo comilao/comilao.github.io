@@ -19,28 +19,28 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"none","post_header":"none","post_body":"none","coll_header":"none","sidebar":"none"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"comilao.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"none","post_header":"none","post_body":"none","coll_header":"none","sidebar":"none"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="Preface Hmm, another article talking about Markdown?  Well, I am not going through the Markdown syntax one by one in this article, I am pretty sure they are quite easy to master after some practices.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown Syntax">
-<meta property="og:url" content="http://example.com/miscellaneous/markdown_syntax/index.html">
+<meta property="og:url" content="https://comilao.github.io/miscellaneous/markdown_syntax/index.html">
 <meta property="og:site_name" content="Comilao Learning">
 <meta property="og:description" content="Preface Hmm, another article talking about Markdown?  Well, I am not going through the Markdown syntax one by one in this article, I am pretty sure they are quite easy to master after some practices.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-26T12:44:32.000Z">
 <meta property="article:modified_time" content="2022-01-25T16:00:00.000Z">
 <meta property="article:author" content="Ma Cong">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="vscode">
 <meta property="article:tag" content="markdown">
+<meta property="article:tag" content="vscode">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/miscellaneous/markdown_syntax/">
+<link rel="canonical" href="https://comilao.github.io/miscellaneous/markdown_syntax/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/miscellaneous/markdown_syntax/","path":"miscellaneous/markdown_syntax/","title":"Markdown Syntax"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://comilao.github.io/miscellaneous/markdown_syntax/","path":"miscellaneous/markdown_syntax/","title":"Markdown Syntax"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Markdown Syntax | Comilao Learning</title>
@@ -52,6 +52,7 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
+<link rel="alternate" href="/atom.xml" title="Comilao Learning" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -79,6 +80,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -91,11 +93,37 @@
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -121,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Horizontal-Line"><span class="nav-number">2.</span> <span class="nav-text">Horizontal Line</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fenced-Code-Block"><span class="nav-number">3.</span> <span class="nav-text">Fenced Code Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fenced-Code-Block-Language"><span class="nav-number">3.1.</span> <span class="nav-text">Fenced Code Block Language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fenced-Code-Block-with-Bash-Script"><span class="nav-number">3.2.</span> <span class="nav-text">Fenced Code Block with Bash Script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fenced-Code-Block-with-diff"><span class="nav-number">3.3.</span> <span class="nav-text">Fenced Code Block with diff</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fenced-Code-Block-with-Hexo"><span class="nav-number">3.4.</span> <span class="nav-text">Fenced Code Block with Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Referrence"><span class="nav-number">4.</span> <span class="nav-text">Referrence</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Horizontal-Line"><span class="nav-number">2.</span> <span class="nav-text">Horizontal Line</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fenced-Code-Block"><span class="nav-number">3.</span> <span class="nav-text">Fenced Code Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Block-Language"><span class="nav-number">3.1.</span> <span class="nav-text">Code Block Language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bash-Script"><span class="nav-number">3.2.</span> <span class="nav-text">Bash Script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diff"><span class="nav-number">3.3.</span> <span class="nav-text">diff</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Path-in-Hexo"><span class="nav-number">3.4.</span> <span class="nav-text">File Path in Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Referrence"><span class="nav-number">4.</span> <span class="nav-text">Referrence</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -150,6 +178,14 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/comilao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;comilao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
 
 
 
@@ -184,7 +220,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/miscellaneous/markdown_syntax/">
+    <link itemprop="mainEntityOfPage" href="https://comilao.github.io/miscellaneous/markdown_syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -242,16 +278,16 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;hr line&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// to obey markdownlint&#x27;s MD035 - Horizontal rule style</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert consistent hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;---&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="Fenced-Code-Block"><a href="#Fenced-Code-Block" class="headerlink" title="Fenced Code Block"></a>Fenced Code Block</h2><h3 id="Fenced-Code-Block-Language"><a href="#Fenced-Code-Block-Language" class="headerlink" title="Fenced Code Block Language"></a>Fenced Code Block Language</h3><p>With markdownlint extension rule <a target="_blank" rel="noopener" href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md040">MD040 - Fenced code blocks should have a language specified</a>, we are required to specify the language for a Fenced Code Block.</p>
+<h2 id="Fenced-Code-Block"><a href="#Fenced-Code-Block" class="headerlink" title="Fenced Code Block"></a>Fenced Code Block</h2><h3 id="Code-Block-Language"><a href="#Code-Block-Language" class="headerlink" title="Code Block Language"></a>Code Block Language</h3><p>With markdownlint extension rule <a target="_blank" rel="noopener" href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md040">MD040 - Fenced code blocks should have a language specified</a>, we are required to specify the language for a Fenced Code Block.</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```JavaScript</span></span><br><span class="line"><span class="code">let var = 1;</span></span><br><span class="line"><span class="code">const func = () =&gt; &quot;func&quot;;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 
 <p>Then the issue is, what are the language that we can specify? The complete list is <a target="_blank" rel="noopener" href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">here</a>.</p>
 <p>I know it is a huge list! But the rule seems to be quite lenient for detecting the name of the language. For example, <code>JavaScript</code> could be written as <code>js</code>, <code>JS</code>, <code>JavaScript</code> or <code>javascript</code> and <code>Python</code> could be written as <code>py</code>, <code>python</code> or <code>Python</code>. It won’t affect the rendered HTML by GitHub or Hexo and VS Code is also able to highlight the syntax.</p>
-<h3 id="Fenced-Code-Block-with-Bash-Script"><a href="#Fenced-Code-Block-with-Bash-Script" class="headerlink" title="Fenced Code Block with Bash Script"></a>Fenced Code Block with Bash Script</h3><p>Often, I don’t know what to put for this type. After some research in the huge list mentioned earlier, my doubt is finally solved. <strong>It can be <code>shell</code>, <code>bash</code>, <code>sh</code> or <code>zsh</code>.</strong></p>
-<h3 id="Fenced-Code-Block-with-diff"><a href="#Fenced-Code-Block-with-diff" class="headerlink" title="Fenced Code Block with diff"></a>Fenced Code Block with diff</h3><p>When I discovered this <code>diff</code> type as one of the language option for Fenced Code Block, I realised this is extremely helpful to highlight what has been changed for not only code but also configuration, especially the latter.</p>
+<h3 id="Bash-Script"><a href="#Bash-Script" class="headerlink" title="Bash Script"></a>Bash Script</h3><p>Often, I don’t know what to put for this type. After some research in the huge list mentioned earlier, my doubt is finally solved. <strong>It can be <code>shell</code>, <code>bash</code>, <code>sh</code> or <code>zsh</code>.</strong></p>
+<h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a><code>diff</code></h3><p>When I discovered this <code>diff</code> type as one of the language option for Fenced Code Block, I realised this is extremely helpful to highlight what has been changed for not only code but also configuration, especially the latter.</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">some_config = &quot;1&quot;</span><br><span class="line"><span class="deletion">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="addition">+ some_other_config = &quot;3&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Fenced-Code-Block-with-Hexo"><a href="#Fenced-Code-Block-with-Hexo" class="headerlink" title="Fenced Code Block with Hexo"></a>Fenced Code Block with Hexo</h3><p>In Hexo, we could add a space followed by the <code>file path</code> after adding language for Fenced Code Block (<strong>Note:</strong> this does not work on GitHub).</p>
+<h3 id="File-Path-in-Hexo"><a href="#File-Path-in-Hexo" class="headerlink" title="File Path in Hexo"></a>File Path in Hexo</h3><p>In Hexo, we could add a space followed by the <code>file path</code> after adding language for Fenced Code Block (<strong>Note:</strong> this does not work on GitHub).</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```diff configuration.file</span></span><br><span class="line"><span class="code">some_config = &quot;1&quot;</span></span><br><span class="line"><span class="code">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="code">+ some_other_config = &quot;3&quot;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 
 <p>Fenced Code Block above will be rendered as:</p>
@@ -270,9 +306,9 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
-              <a href="/tags/vscode/" rel="tag"># vscode</a>
               <a href="/tags/markdown/" rel="tag"># markdown</a>
+              <a href="/tags/vscode/" rel="tag"># vscode</a>
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
           </div>
 
         
@@ -284,8 +320,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/setup/hexo/hexo_with_image/" rel="next" title="Hexo with image hosting">
-                  Hexo with image hosting <i class="fa fa-chevron-right"></i>
+                <a href="/setup/hexo/hexo_with_image/" rel="next" title="Hexo with Image Hosting">
+                  Hexo with Image Hosting <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -324,6 +360,8 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
