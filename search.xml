@@ -1,49 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Markdown Syntax</title>
-    <url>/miscellaneous/markdown_syntax/</url>
-    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><blockquote>
-<p>Hmm, another article talking about Markdown?</p>
-</blockquote>
-<p>Well, I am not going through the Markdown syntax one by one in this article, I am pretty sure they are quite easy to master after some practices. But instead, I will talk about some hidden parts (at least to me😅) of the Markdown syntax, especially after using <a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a> extension.</p>
-<p>If you are looking for a quick Markdown Cheat Sheet, you could refer to <a href="https://www.markdownguide.org/cheat-sheet/">Markdown Guide</a>. In summary, all basic syntax are supported for hexo with next theme (I am not sure whether theme matters, but let’s be precise); for the extended syntax, <code>Table</code>, <code>Fenced Code Block</code>, <code>Definition List</code>, <code>Strikethrough</code> and <code>Task List</code> (not sure the purpose of this in a blog article though) are supported. That’s good enough for writting a good blog article with Markdown, hooray🎉.</p>
-<span id="more"></span>
-<hr>
-<h2 id="Horizontal-Line"><a href="#Horizontal-Line" class="headerlink" title="Horizontal Line"></a>Horizontal Line</h2><p>The default <code>Horizontal Line</code> from VS Code quick suggestion is <code>----------</code>, which conflicts with markdownlint extension rule <a href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md035">MD035 - Horizontal rule style</a>. Hence it is either to ignore the rule (and break it) or to add another snippet to obey the rule.</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;hr line&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// to obey markdownlint&#x27;s MD035 - Horizontal rule style</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert consistent hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;---&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Fenced-Code-Block"><a href="#Fenced-Code-Block" class="headerlink" title="Fenced Code Block"></a>Fenced Code Block</h2><h3 id="Code-Block-Language"><a href="#Code-Block-Language" class="headerlink" title="Code Block Language"></a>Code Block Language</h3><p>With markdownlint extension rule <a href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md040">MD040 - Fenced code blocks should have a language specified</a>, we are required to specify the language for a Fenced Code Block.</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```JavaScript</span></span><br><span class="line"><span class="code">let var = 1;</span></span><br><span class="line"><span class="code">const func = () =&gt; &quot;func&quot;;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-
-<p>Then the issue is, what are the language that we can specify? The complete list is <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">here</a>.</p>
-<p>I know it is a huge list! But the rule seems to be quite lenient for detecting the name of the language. For example, <code>JavaScript</code> could be written as <code>js</code>, <code>JS</code>, <code>JavaScript</code> or <code>javascript</code> and <code>Python</code> could be written as <code>py</code>, <code>python</code> or <code>Python</code>. It won’t affect the rendered HTML by GitHub or Hexo and VS Code is also able to highlight the syntax.</p>
-<h3 id="Bash-Script"><a href="#Bash-Script" class="headerlink" title="Bash Script"></a>Bash Script</h3><p>Often, I don’t know what to put for this type. After some research in the huge list mentioned earlier, my doubt is finally solved. <strong>It can be <code>shell</code>, <code>bash</code>, <code>sh</code> or <code>zsh</code>.</strong></p>
-<h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a><code>diff</code></h3><p>When I discovered this <code>diff</code> type as one of the language option for Fenced Code Block, I realised this is extremely helpful to highlight what has been changed for not only code but also configuration, especially the latter.</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">some_config = &quot;1&quot;</span><br><span class="line"><span class="deletion">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="addition">+ some_other_config = &quot;3&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="File-Path-in-Hexo"><a href="#File-Path-in-Hexo" class="headerlink" title="File Path in Hexo"></a>File Path in Hexo</h3><p>In Hexo, we could add a space followed by the <code>file path</code> after adding language for Fenced Code Block (<strong>Note:</strong> this does not work on GitHub).</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```diff configuration.file</span></span><br><span class="line"><span class="code">some_config = &quot;1&quot;</span></span><br><span class="line"><span class="code">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="code">+ some_other_config = &quot;3&quot;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-
-<p>Fenced Code Block above will be rendered as:</p>
-<figure class="highlight diff"><figcaption><span>configuration.file</span></figcaption><table><tr><td class="code"><pre><span class="line">some_config = &quot;1&quot;</span><br><span class="line"><span class="deletion">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="addition">+ some_other_config = &quot;3&quot;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><p><a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">GitHub known languages</a></p>
-<p><a href="https://www.markdownguide.org/">Markdown Guide</a></p>
-<p><a href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md">Rules for markdownlint extension</a></p>
-]]></content>
-      <categories>
-        <category>miscellaneous</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>vscode</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo Setup General</title>
     <url>/setup/hexo/hexo_general/</url>
     <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>As a new year resolution, I would like to be better than last year. In the technical aspect, I think starting a blog might be a good way (provided I could keep this habit). I used hexo before, however, due to issues with organizing blog articles and the ugly defaul theme, I stopped after a few articles. After organizing all my browser bookmarks last week, I got some inspirations on how to organize things, hence I am starting a new hexo blog again. Let’s see how far this time I could go.</p>
@@ -128,36 +85,61 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>setup</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hexo Setup GitHub Pages</title>
-    <url>/setup/hexo/hexo_gh_pages/</url>
-    <content><![CDATA[<h2 id="Deploy-to-GitHub-Pages"><a href="#Deploy-to-GitHub-Pages" class="headerlink" title="Deploy to GitHub Pages"></a>Deploy to GitHub Pages</h2><p>Creating a GitHub Pages site is quite simple. With a GitHub account, a <code>&lt;github-username&gt;.github.io</code> repository could be created.</p>
-<p>Once GitHub Pages repository has been successfully created, the next job is to generate static files and deploy them to GitHub Pages reposity to host.</p>
+    <title>Markdown with VS Code</title>
+    <url>/setup/vscode/vscode_markdown/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>As I will be writing lots of Markdowns, I spend some time researching VS Code Markdown extensions and creating snippets to enhance the writing experience.</p>
 <span id="more"></span>
+<hr>
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><h3 id="markdownlint"><a href="#markdownlint" class="headerlink" title="markdownlint"></a>markdownlint</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a> applies a set of linting rules to Markdown file.</p>
+<p>To exclude certain rules, you can add following configuration to VS Code settings at <code>.vscode/settings.json</code> (This settings file only applies to Workspace level, which I recommend it over User level).</p>
+<p>Below is an example to exclude inline-html from linting:</p>
+<figure class="highlight json"><figcaption><span>vscode/settings.json</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;markdownlint.config&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// Exclude inline-html from linting</span></span><br><span class="line">    <span class="attr">&quot;MD033&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Change <code>_config.yml</code>:</p>
-<figure class="highlight diff"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line"><span class="deletion">-  type: git</span></span><br><span class="line"><span class="addition">+  type: git</span></span><br><span class="line"><span class="addition">+  repo: https://github.com/comilao/comilao.github.io.git</span></span><br><span class="line"><span class="addition">+  branch: master</span></span><br></pre></td></tr></table></figure>
+<h3 id="Coloring-Header"><a href="#Coloring-Header" class="headerlink" title="Coloring Header"></a>Coloring Header</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=satokaz.vscode-markdown-header-coloring">Markdown Header Coloring</a> colors Markdown header tags.</p>
+<p>I use a dark theme called <a href="https://ahmadawais.com/shades-of-purple/">Shades of Purple</a> for VS Code. In this theme, the heading syntax is not very prominent, as the author says he prefers the syntax to be as hidden as possible. I like this theme a lot, but my only complaint is this <strong>hidden heading syntax</strong>, hence I find this extension extremely helpful!</p>
+<h3 id="GitHub-Style-Preview"><a href="#GitHub-Style-Preview" class="headerlink" title="GitHub Style Preview"></a>GitHub Style Preview</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles">Markdown Preview GitHub Styling</a> changes the built-in markdown to match GitHub’s styling.</p>
+<hr>
+<h2 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h2><blockquote>
+<p>Code snippets are templates that make it easier to enter repeating code patterns, such as loops or conditional-statements.</p>
+</blockquote>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">From Snippets in VS Code</a>. (You can try <code>for</code> in a JavaScript file with VS Code to learn how to use a snippet.)</p>
+<h3 id="Enable-Quick-Suggestion"><a href="#Enable-Quick-Suggestion" class="headerlink" title="Enable Quick Suggestion"></a>Enable Quick Suggestion</h3><p>Before using snippets in a Markdown file, quick suggestions in VS Code needs to be enabled. From the <a href="https://code.visualstudio.com/docs/editor/intellisense">Intellisense</a> page, it is enabled only for certain languages (Like JavaScript, TypeScript, JSON and etc.). Support for other languages (e.g. Python, Go and etc.) are managed by their corresponding extentions.</p>
+<p>For Markdown, we can enable quick suggestions in VS Code settings (Code -&gt; Preferences -&gt; Settings):</p>
+<ol>
+<li>Once in the settings page, you can decide whether to apply this setting to User or Workspace level by toggle between User and Workspace. (I prefer to keep language specific settings at Workspace level though.)</li>
+<li>Go to the top right corner and look for “Open Settings (JSON)” button and click it.</li>
+<li>Type <code>&quot;[markdown]&quot;</code> and select <code>[markdown]</code> from the quick suggestion popup window (Because the settings file is JSON, so quick suggestion works there 😜).</li>
+</ol>
+<h3 id="Markdown-Snippets"><a href="#Markdown-Snippets" class="headerlink" title="Markdown Snippets"></a>Markdown Snippets</h3><p>Then change the <code>[markdown]</code> settings to:</p>
+<figure class="highlight json"><figcaption><span>settings.json</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;[markdown]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.unicodeHighlight.ambiguousCharacters&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;editor.wordWrap&quot;</span>: <span class="string">&quot;on&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;editor.quickSuggestions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;other&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;comments&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;strings&quot;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Install plugin <code>hexo-deployer-git</code>:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>After that we can start adding customized snippets for Markdown in VS Code. Go to User Snippets (Code -&gt; Preferences -&gt; User Snippets) and select <code>markdown.json</code>. Below are snippets I used:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;link&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lk&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;]($&#123;2:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with clipboard url&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link with url from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lku&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;]($CLIPBOARD)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with clipboard text&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link with name from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lkt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$CLIPBOARD]($&#123;1:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;image with clipboard url&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert image with url from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;imgu&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;![$&#123;1:alt_text&#125;]($CLIPBOARD)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with header id&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// markdown specific for hexo</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;[hexo]\n \&quot;## Header something\&quot; should be \n \&quot;Header-something\&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lkh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;](#$&#123;2:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;table&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert table&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;table&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;| Header1 | Header2 |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| --- | --- |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| content | content |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| content | content |&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;more button&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// markdown specific for hexo, but can be used to put hidden comments in markdown</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;[hexo]\n \&quot;Read More &gt;&gt;\&quot; button in blog article for hexo next theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;more&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;&lt;!-- more --&gt;&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;hr line&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// to obey markdownlint&#x27;s MD035 - Horizontal rule style</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert consistent hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;---&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;codeblock with language&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;codeblock with frequently used languages&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;block&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;```$&#123;1|python,diff,shell,json|&#125;&quot;</span>,</span><br><span class="line">      <span class="string">&quot;```&quot;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>To deploy, run the following commands:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-
-<p>You browser will open and you need to authorize the action in order to deploy generated static files to GitHub Pages repository.</p>
+<hr>
+<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><ul>
+<li><p><a href="https://www.deepanseeralan.com/tech/enable-quick-suggestions-for-markdown-in-vscode/">Enable quick suggestions for Markdown in VS Code</a></p>
+</li>
+<li><p>Some Markdown snippets are from <a href="https://github.com/gggwvg/vscode-snippets-markdown">vscode-snippets-markdown</a> (The use of <code>$CLIPBOARD</code> is really clever!)</p>
+</li>
+<li><p><a href="https://www.freecodecamp.org/news/create-your-own-custom-code-snippets/">“Step 6: Create Choices” for custom snippet</a> (I never know snippet placeholder could have choices!)</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>setup</category>
-        <category>hexo</category>
+        <category>vscode</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>setup</tag>
-        <tag>github pages</tag>
+        <tag>vscode</tag>
+        <tag>vscode extension</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -169,7 +151,7 @@
 <h2 id="Change-favicon"><a href="#Change-favicon" class="headerlink" title="Change favicon"></a>Change favicon</h2><p>After changing to <a href="https://theme-next.js.org/">next theme</a>, the Hexo site uses the default next <code>favicon</code>, you could change to your preferred <code>favicon</code> for your blog.</p>
 <p>For me, I choose the reading icon from <a href="https://www.flaticon.com/free-icons/student">here</a> and use <a href="https://realfavicongenerator.net/">Favicon Generator</a> to generate icons and stored them under <code>source/images</code> folder as shown below.</p>
 <!-- TODO try to look for another way to acknowledge  -->
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── source</span><br><span class="line">|   ├── _posts</span><br><span class="line">|   ├── images</span><br><span class="line">|       ├── apple-touch-icon-reading.png</span><br><span class="line">|       ├── favicon-16x16-reading.png</span><br><span class="line">|       ├── favicon-32x32-reading.png</span><br><span class="line">|       └── logo.svg</span><br><span class="line">|</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── source</span><br><span class="line">│   ├── _posts</span><br><span class="line">│   ├── images</span><br><span class="line">│       ├── apple-touch-icon-reading.png</span><br><span class="line">│       ├── favicon-16x16-reading.png</span><br><span class="line">│       ├── favicon-32x32-reading.png</span><br><span class="line">│       └── logo.svg</span><br><span class="line">│</span><br></pre></td></tr></table></figure>
 
 <p>Remember to change <code>_config.next.yml</code> as well:</p>
 <figure class="highlight diff"><figcaption><span>_config.next.yml</span></figcaption><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line"><span class="deletion">-  small: /images/favicon-16x16-next.png</span></span><br><span class="line"><span class="deletion">-  medium: /images/favicon-32x32-next.png</span></span><br><span class="line"><span class="deletion">-  apple_touch_icon: /images/apple-touch-icon-next.png</span></span><br><span class="line"><span class="addition">+  small: /images/favicon-16x16-reading.png</span></span><br><span class="line"><span class="addition">+  medium: /images/favicon-32x32-reading.png</span></span><br><span class="line"><span class="addition">+  apple_touch_icon: /images/apple-touch-icon-reading.png</span></span><br><span class="line">  safari_pinned_tab: /images/logo.svg</span><br></pre></td></tr></table></figure>
@@ -225,9 +207,80 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>setup</tag>
+        <tag>hexo</tag>
         <tag>hexo next theme</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Setup GitHub Pages</title>
+    <url>/setup/hexo/hexo_gh_pages/</url>
+    <content><![CDATA[<h2 id="Deploy-to-GitHub-Pages"><a href="#Deploy-to-GitHub-Pages" class="headerlink" title="Deploy to GitHub Pages"></a>Deploy to GitHub Pages</h2><p>Creating a GitHub Pages site is quite simple. With a GitHub account, a <code>&lt;github-username&gt;.github.io</code> repository could be created.</p>
+<p>Once GitHub Pages repository has been successfully created, the next job is to generate static files and deploy them to GitHub Pages reposity to host.</p>
+<span id="more"></span>
+
+<p>Change <code>_config.yml</code>:</p>
+<figure class="highlight diff"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line"><span class="deletion">-  type: git</span></span><br><span class="line"><span class="addition">+  type: git</span></span><br><span class="line"><span class="addition">+  repo: https://github.com/comilao/comilao.github.io.git</span></span><br><span class="line"><span class="addition">+  branch: master</span></span><br></pre></td></tr></table></figure>
+
+<p>Install plugin <code>hexo-deployer-git</code>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<p>To deploy, run the following commands:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>You browser will open and you need to authorize the action in order to deploy generated static files to GitHub Pages repository.</p>
+]]></content>
+      <categories>
+        <category>setup</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>setup</tag>
+        <tag>hexo</tag>
+        <tag>github pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown Syntax</title>
+    <url>/miscellaneous/markdown_syntax/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><blockquote>
+<p>Hmm, another article talking about Markdown?</p>
+</blockquote>
+<p>Well, I am not going through the Markdown syntax one by one in this article, I am pretty sure they are quite easy to master after some practices. But instead, I will talk about some hidden parts (at least to me😅) of the Markdown syntax, especially after using <a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a> extension.</p>
+<p>If you are looking for a quick Markdown Cheat Sheet, you could refer to <a href="https://www.markdownguide.org/cheat-sheet/">Markdown Guide</a>. In summary, all basic syntax are supported for hexo with next theme (I am not sure whether theme matters, but let’s be precise); for the extended syntax, <code>Table</code>, <code>Fenced Code Block</code>, <code>Definition List</code>, <code>Strikethrough</code> and <code>Task List</code> (not sure the purpose of this in a blog article though) are supported. That’s good enough for writting a good blog article with Markdown, hooray🎉.</p>
+<span id="more"></span>
+<hr>
+<h2 id="Horizontal-Line"><a href="#Horizontal-Line" class="headerlink" title="Horizontal Line"></a>Horizontal Line</h2><p>The default <code>Horizontal Line</code> from VS Code quick suggestion is <code>----------</code>, which conflicts with markdownlint extension rule <a href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md035">MD035 - Horizontal rule style</a>. Hence it is either to ignore the rule (and break it) or to add another snippet to obey the rule.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;hr line&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// to obey markdownlint&#x27;s MD035 - Horizontal rule style</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert consistent hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;---&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Fenced-Code-Block"><a href="#Fenced-Code-Block" class="headerlink" title="Fenced Code Block"></a>Fenced Code Block</h2><h3 id="Code-Block-Language"><a href="#Code-Block-Language" class="headerlink" title="Code Block Language"></a>Code Block Language</h3><p>With markdownlint extension rule <a href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md#md040">MD040 - Fenced code blocks should have a language specified</a>, we are required to specify the language for a Fenced Code Block.</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```JavaScript</span></span><br><span class="line"><span class="code">let var = 1;</span></span><br><span class="line"><span class="code">const func = () =&gt; &quot;func&quot;;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<p>Then the issue is, what are the language that we can specify? The complete list is <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">here</a>.</p>
+<p>I know it is a huge list! But the rule seems to be quite lenient for detecting the name of the language. For example, <code>JavaScript</code> could be written as <code>js</code>, <code>JS</code>, <code>JavaScript</code> or <code>javascript</code> and <code>Python</code> could be written as <code>py</code>, <code>python</code> or <code>Python</code>. It won’t affect the rendered HTML by GitHub or Hexo and VS Code is also able to highlight the syntax.</p>
+<h3 id="Bash-Script"><a href="#Bash-Script" class="headerlink" title="Bash Script"></a>Bash Script</h3><p>Often, I don’t know what to put for this type. After some research in the huge list mentioned earlier, my doubt is finally solved. <strong>It can be <code>shell</code>, <code>bash</code>, <code>sh</code> or <code>zsh</code>.</strong></p>
+<h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a><code>diff</code></h3><p>When I discovered this <code>diff</code> type as one of the language option for Fenced Code Block, I realised this is extremely helpful to highlight what has been changed for not only code but also configuration, especially the latter.</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">some_config = &quot;1&quot;</span><br><span class="line"><span class="deletion">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="addition">+ some_other_config = &quot;3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="File-Path-in-Hexo"><a href="#File-Path-in-Hexo" class="headerlink" title="File Path in Hexo"></a>File Path in Hexo</h3><p>In Hexo, we could add a space followed by the <code>file path</code> after adding language for Fenced Code Block (<strong>Note:</strong> this does not work on GitHub).</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```diff configuration.file</span></span><br><span class="line"><span class="code">some_config = &quot;1&quot;</span></span><br><span class="line"><span class="code">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="code">+ some_other_config = &quot;3&quot;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<p>Fenced Code Block above will be rendered as:</p>
+<figure class="highlight diff"><figcaption><span>configuration.file</span></figcaption><table><tr><td class="code"><pre><span class="line">some_config = &quot;1&quot;</span><br><span class="line"><span class="deletion">- some_other_config = &quot;2&quot;</span></span><br><span class="line"><span class="addition">+ some_other_config = &quot;3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><p><a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">GitHub known languages</a></p>
+<p><a href="https://www.markdownguide.org/">Markdown Guide</a></p>
+<p><a href="https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md">Rules for markdownlint extension</a></p>
+]]></content>
+      <categories>
+        <category>miscellaneous</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>vscode</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -266,60 +319,112 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>setup</tag>
+        <tag>hexo</tag>
         <tag>image hosting</tag>
       </tags>
   </entry>
   <entry>
-    <title>Markdown with VS Code</title>
-    <url>/setup/vscode/vscode_markdown/</url>
-    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>As I will be writing lots of Markdowns, I spend some time researching VS Code Markdown extensions and creating snippets to enhance the writing experience.</p>
+    <title>Mypy in Python</title>
+    <url>/python/setup/1_python_mypy/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>Python does not have the ability to explicitly specify variable types. All variable types are inferred based on assignment. This may lead to runtime error such as <code>&quot;str&quot; + 1</code> (this only produces unintended/unexpected result in JavaScript though), it also prevents editor to offer valuable suggestions.</p>
+<p><a href="https://mypy.readthedocs.io/en/stable/">Mypy</a> is a static type checker. In one of my company’s project, I noticed <code>mypy.ini</code> sitting in the project directory, but not being utilised. After some research on <code>mypy</code>, I decided to add its support together with <a href="https://pre-commit.com/">pre-commit</a>. This blog post discusses <code>mypy</code> usage briefly, but focus more on the configurations of files to be checked or excluded in the context of <code>mypy</code> and <code>pre-commit</code> hook configuration.</p>
 <span id="more"></span>
-<hr>
-<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><h3 id="markdownlint"><a href="#markdownlint" class="headerlink" title="markdownlint"></a>markdownlint</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a> applies a set of linting rules to Markdown file.</p>
-<p>To exclude certain rules, you can add following configuration to VS Code settings at <code>.vscode/settings.json</code> (This settings file only applies to Workspace level, which I recommend it over User level).</p>
-<p>Below is an example to exclude inline-html from linting:</p>
-<figure class="highlight json"><figcaption><span>vscode/settings.json</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;markdownlint.config&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// Exclude inline-html from linting</span></span><br><span class="line">    <span class="attr">&quot;MD033&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Coloring-Header"><a href="#Coloring-Header" class="headerlink" title="Coloring Header"></a>Coloring Header</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=satokaz.vscode-markdown-header-coloring">Markdown Header Coloring</a> colors Markdown header tags.</p>
-<p>I use a dark theme called <a href="https://ahmadawais.com/shades-of-purple/">Shades of Purple</a> for VS Code. In this theme, the heading syntax is not very prominent, as the author says he prefers the syntax to be as hidden as possible. I like this theme a lot, but my only complaint is this <strong>hidden heading syntax</strong>, hence I find this extension extremely helpful!</p>
-<h3 id="GitHub-Style-Preview"><a href="#GitHub-Style-Preview" class="headerlink" title="GitHub Style Preview"></a>GitHub Style Preview</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles">Markdown Preview GitHub Styling</a> changes the built-in markdown to match GitHub’s styling.</p>
-<hr>
-<h2 id="Snippets"><a href="#Snippets" class="headerlink" title="Snippets"></a>Snippets</h2><blockquote>
-<p>Code snippets are templates that make it easier to enter repeating code patterns, such as loops or conditional-statements.</p>
-</blockquote>
-<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">From Snippets in VS Code</a>. (You can try <code>for</code> in a JavaScript file with VS Code to learn how to use a snippet.)</p>
-<h3 id="Enable-Quick-Suggestion"><a href="#Enable-Quick-Suggestion" class="headerlink" title="Enable Quick Suggestion"></a>Enable Quick Suggestion</h3><p>Before using snippets in a Markdown file, quick suggestions in VS Code needs to be enabled. From the <a href="https://code.visualstudio.com/docs/editor/intellisense">Intellisense</a> page, it is enabled only for certain languages (Like JavaScript, TypeScript, JSON and etc.). Support for other languages (e.g. Python, Go and etc.) are managed by their corresponding extentions.</p>
-<p>For Markdown, we can enable quick suggestions in VS Code settings (Code -&gt; Preferences -&gt; Settings):</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Setup-Demo"><a href="#Setup-Demo" class="headerlink" title="Setup Demo"></a>Setup Demo</h3><p>Demo project structure.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── project</span><br><span class="line">│   ├── pyproject.toml</span><br><span class="line">│   ├── mypy.ini</span><br><span class="line">│   ├── main.py</span><br><span class="line">│   └── module</span><br><span class="line">│       ├── __init__.py</span><br><span class="line">│       ├── coingecko_api.py</span><br><span class="line">│       └── github_api.py</span><br><span class="line">│</span><br></pre></td></tr></table></figure>
+
+<p>Dependency required for the demo.</p>
+<figure class="highlight toml"><figcaption><span>pyproject.toml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># partial pyproject.toml is shown</span></span><br><span class="line"></span><br><span class="line"><span class="section">[tool.poetry.dependencies]</span></span><br><span class="line"><span class="attr">python</span> = <span class="string">&quot;^3.9&quot;</span></span><br><span class="line"><span class="attr">requests</span> = <span class="string">&quot;^2.27.1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[tool.poetry.dev-dependencies]</span></span><br><span class="line"><span class="attr">mypy</span> = <span class="string">&quot;^0.931&quot;</span></span><br><span class="line"><span class="attr">pre-commit</span> = <span class="string">&quot;^2.17.0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<p>Files</p>
+<figure class="highlight ini"><figcaption><span>./mypy.ini</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="section">[mypy]</span></span><br><span class="line"><span class="attr">python_version</span> = <span class="number">3.9</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>./main.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dummy_func</span>(<span class="params">v: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">    <span class="keyword">return</span> v</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    dummy_func(<span class="string">&quot;1&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>./module/__init__.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> .coingecko_api <span class="keyword">import</span> CoinGeckoAPI</span><br><span class="line"><span class="keyword">from</span> .github_api <span class="keyword">import</span> get_github_user</span><br><span class="line"></span><br><span class="line">__all__ = [<span class="string">&quot;CoinGeckoAPI&quot;</span>, <span class="string">&quot;get_github_user&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>./module/coingecko_api.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoinGeckoAPI</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, dummy_int: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        self.dummy_str: <span class="built_in">str</span> = dummy_int</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dummy_str</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._dummy_str</span><br><span class="line"></span><br><span class="line"><span class="meta">    @dummy_str.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dummy_str</span>(<span class="params">self, dummy_int: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span></span><br><span class="line">        self._dummy_str = <span class="string">&quot;000&quot;</span> + <span class="built_in">str</span>(dummy_int)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, __o: <span class="string">&quot;CoinGeckoAPI&quot;</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.dummy_str == __o.dummy_str</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_bitcoin_price</span>(<span class="params">self</span>):</span></span><br><span class="line">        r = requests.get(</span><br><span class="line">            <span class="string">&quot;https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> r.json()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>./module/github_api.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_github_user</span>():</span></span><br><span class="line">    r = requests.get(<span class="string">&quot;https://api.github.com/user&quot;</span>, auth=(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;pass&quot;</span>))</span><br><span class="line">    <span class="keyword">return</span> r.status_code</span><br></pre></td></tr></table></figure>
+
+<h3 id="Run-type-checking"><a href="#Run-type-checking" class="headerlink" title="Run type checking"></a>Run type checking</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> At project root</span></span><br><span class="line">mypy .</span><br></pre></td></tr></table></figure>
+
+<p>After running above command, <code>mypy .</code> should complain these 3 types of errors:</p>
 <ol>
-<li>Once in the settings page, you can decide whether to apply this setting to User or Workspace level by toggle between User and Workspace. (I prefer to keep language specific settings at Workspace level though.)</li>
-<li>Go to the top right corner and look for “Open Settings (JSON)” button and click it.</li>
-<li>Type <code>&quot;[markdown]&quot;</code> and select <code>[markdown]</code> from the quick suggestion popup window (Because the settings file is JSON, so quick suggestion works there 😜).</li>
+<li>Library stubs not installed for “requests”</li>
+<li>Incompatible types in assignment (expression has type “int”, variable has type “str”)</li>
+<li>Argument 1 of “<strong>eq</strong>“ is incompatible with supertype “object”; supertype defines the argument type as “object”</li>
 </ol>
-<h3 id="Markdown-Snippets"><a href="#Markdown-Snippets" class="headerlink" title="Markdown Snippets"></a>Markdown Snippets</h3><p>Then change the <code>[markdown]</code> settings to:</p>
-<figure class="highlight json"><figcaption><span>settings.json</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;[markdown]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.unicodeHighlight.ambiguousCharacters&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;editor.wordWrap&quot;</span>: <span class="string">&quot;on&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;editor.quickSuggestions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;other&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;comments&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;strings&quot;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Missing-library-stubs"><a href="#Missing-library-stubs" class="headerlink" title="Missing library stubs"></a>Missing library stubs</h3><p>For this error, mypy already shows <code>Hint: &quot;python3 -m pip install types-requests&quot;</code> to install the missing type dependency, in this case <code>types-requests</code>.</p>
+<p>Hints offered are quite accurate in my experience, except the case for <code>grpc</code> for my company’s project, which requires <code>grpc-stubs</code>.</p>
+<h3 id="Incompatible-type"><a href="#Incompatible-type" class="headerlink" title="Incompatible type"></a>Incompatible type</h3><p>For this error, <code>mymy</code> is complaining for this line in <code>./module/coingecko_api.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.dummy_str: <span class="built_in">str</span> = dummy_int</span><br></pre></td></tr></table></figure>
 
-<p>After that we can start adding customized snippets for Markdown in VS Code. Go to User Snippets (Code -&gt; Preferences -&gt; User Snippets) and select <code>markdown.json</code>. Below are snippets I used:</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;link&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lk&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;]($&#123;2:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with clipboard url&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link with url from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lku&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;]($CLIPBOARD)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with clipboard text&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert link with name from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lkt&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$CLIPBOARD]($&#123;1:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;image with clipboard url&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert image with url from clipboard&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;imgu&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;![$&#123;1:alt_text&#125;]($CLIPBOARD)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;link with header id&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// markdown specific for hexo</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;[hexo]\n \&quot;## Header something\&quot; should be \n \&quot;Header-something\&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;lkh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;[$&#123;1:name&#125;](#$&#123;2:url&#125;)&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;table&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert table&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;table&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;| Header1 | Header2 |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| --- | --- |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| content | content |&quot;</span>,</span><br><span class="line">      <span class="string">&quot;| content | content |&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;more button&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// markdown specific for hexo, but can be used to put hidden comments in markdown</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;[hexo]\n \&quot;Read More &gt;&gt;\&quot; button in blog article for hexo next theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;more&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;&lt;!-- more --&gt;&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;hr line&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// to obey markdownlint&#x27;s MD035 - Horizontal rule style</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Insert consistent hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span>: <span class="string">&quot;hr&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;body&quot;</span>: <span class="string">&quot;---&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>mypy</code> thinks I try to assign <code>int</code> type to <code>str</code>, despite I used type conversion inside setter annotated by <code>@dummy_str.setter</code>. This is unfortunately not solved at the time of writting, you may watch this <a href="https://github.com/python/mypy/issues/3004">issue</a>.</p>
+<p>To make <code>mypy</code> happy, we have no choice but to ignore it by:</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">- self.dummy_str: str = dummy_int</span></span><br><span class="line"><span class="addition">+ self.dummy_str: str = dummy_int # type:ignore</span></span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><ul>
-<li><p><a href="https://www.deepanseeralan.com/tech/enable-quick-suggestions-for-markdown-in-vscode/">Enable quick suggestions for Markdown in VS Code</a></p>
-</li>
-<li><p>Some Markdown snippets are from <a href="https://github.com/gggwvg/vscode-snippets-markdown">vscode-snippets-markdown</a> (The use of <code>$CLIPBOARD</code> is really clever!)</p>
-</li>
-</ul>
+<h3 id="“-eq-”-input-type"><a href="#“-eq-”-input-type" class="headerlink" title="“__eq__()” input type"></a>“__eq__()” input type</h3><p>For this error, <code>mypy</code> again provides a very useful hint message:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def __eq__(self, other: object) -&gt; bool:</span><br><span class="line">    if not isinstance(other, CoinGeckoAPI):</span><br><span class="line">        return NotImplemented</span><br><span class="line">    return &lt;logic to compare two instances&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>After making relevant changes above, running <code>mypy .</code> should succeed. Now I will discuss about the configuration files.</p>
+<p>In order to discuss configurations for files to be checked or ignored, we need to add <code>pre-commit</code> configuration to <code>.pre-commit-config.yaml</code>:</p>
+<figure class="highlight yaml"><figcaption><span>.pre-commit-config.yaml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">repos:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">repo:</span> <span class="string">https://github.com/pre-commit/mirrors-mypy</span></span><br><span class="line">  <span class="attr">rev:</span> <span class="string">v0.931</span> <span class="comment"># Use the sha / tag you want to point at</span></span><br><span class="line">  <span class="attr">hooks:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">mypy</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Missing-stubs-again"><a href="#Missing-stubs-again" class="headerlink" title="Missing stubs again?"></a>Missing stubs again?</h3><p>After that, running <code>pre-commit run --all-files</code> should report one error about <code>Missing library stubs</code> discussed earlier, despite <code>mypy .</code> reports no error! (<strong>Note:</strong> You need to add files to version control for <code>pre-commit</code> to work, a simple <code>git add .</code> will work, there is no need to commit the changes though.)</p>
+<p>This is because type dependencies need to be added explicitly for <code>mypy</code> hook in <code>.pre-commit-config.yaml</code>:</p>
+<figure class="highlight diff"><figcaption><span>.pre-commit-config.yaml</span></figcaption><table><tr><td class="code"><pre><span class="line">repos:</span><br><span class="line">  rev: v0.931 # Use the sha / tag you want to point at</span><br><span class="line">  hooks:</span><br><span class="line">  - id: mypy</span><br><span class="line"><span class="addition">+   additional_dependencies:</span></span><br><span class="line"><span class="addition">+   - types-requests==2.27.9 # Note the different version syntax from poetry configuration</span></span><br></pre></td></tr></table></figure>
+
+<p>After making the changes above, <code>pre-commit run --all-files</code> should report no errors.</p>
+<h3 id="Before-moving-on"><a href="#Before-moving-on" class="headerlink" title="Before moving on"></a>Before moving on</h3><p>For the following sections, please make some changes to break <code>mypy</code> type checking, for me, I did the following evil code:</p>
+<figure class="highlight diff"><figcaption><span>./main.py</span></figcaption><table><tr><td class="code"><pre><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"><span class="deletion">-    dummy_func(&quot;1&quot;)</span></span><br><span class="line"><span class="addition">+    dummy_func(1)</span></span><br></pre></td></tr></table></figure>
+
+<p>and</p>
+<figure class="highlight diff"><figcaption><span>./module/coingecko_api.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="deletion">- def __eq__(self, __o: object) -&gt; bool:</span></span><br><span class="line"><span class="addition">+ def __eq__(self, __o: &quot;CoinGeckoAPI&quot;) -&gt; bool:</span></span><br><span class="line"><span class="deletion">-    if not isinstance(__o, CoinGeckoAPI):</span></span><br><span class="line"><span class="deletion">-        return NotImplemented</span></span><br><span class="line">    return self.dummy_str == __o.dummy_str</span><br></pre></td></tr></table></figure>
+
+<p>Running <code>mypy .</code> and <code>pre-commit run --all-files</code> should both report the same 2 errors now.</p>
+<h3 id="Files-to-check"><a href="#Files-to-check" class="headerlink" title="Files to check"></a>Files to check</h3><p>For <code>mypy</code> to check only module directory:</p>
+<figure class="highlight diff"><figcaption><span>mypy.ini</span></figcaption><table><tr><td class="code"><pre><span class="line">[mypy]</span><br><span class="line">python_version = 3.9</span><br><span class="line"><span class="addition">+ files = module/</span></span><br></pre></td></tr></table></figure>
+
+<p>Running <code>mypy</code> now (instead of <code>mypy .</code> earlier) should only report <strong>one</strong> error from <code>module</code> directory. However, running <code>pre-commit run --all-files</code> still reports <strong>two</strong> errors. That is because <code>mypy</code> hook in <code>pre-commit</code> does not read <code>files</code> configuration from <code>mypy.ini</code>, we need to make the following changes in <code>.pre-commit-config.yaml</code>:</p>
+<figure class="highlight diff"><figcaption><span>.pre-commit-config.yaml</span></figcaption><table><tr><td class="code"><pre><span class="line">repos:</span><br><span class="line">\- repo: https://github.com/pre-commit/mirrors-mypy</span><br><span class="line">  rev: v0.931</span><br><span class="line">  hooks:</span><br><span class="line">  - id: mypy</span><br><span class="line"><span class="addition">+   files: ^module/</span></span><br><span class="line">    additional_dependencies:</span><br><span class="line">    - types-requests==2.27.9</span><br></pre></td></tr></table></figure>
+
+<p>Note the different syntax for <code>files</code> configuration in <code>mypy.ini</code> and <code>mypy</code> hook in <code>.pre-commit-config.yaml</code>. Refer to <a href="https://mypy.readthedocs.io/en/stable/config_file.html#confval-files">mypy configuration file</a> for more information about <code>files</code> configuration in <code>mypy.ini</code>; as for <code>.pre-commit-config.yaml</code>, it is just regex, which is much simpler.</p>
+<p>(Remember to revert the changes for <code>files</code> configuration made in this section before moving on to the next section.)</p>
+<h3 id="Files-to-exclude"><a href="#Files-to-exclude" class="headerlink" title="Files to exclude"></a>Files to exclude</h3><p>For <code>mypy</code> to exclude <code>module</code> directory:</p>
+<figure class="highlight diff"><figcaption><span>mypy.ini</span></figcaption><table><tr><td class="code"><pre><span class="line">[mypy]</span><br><span class="line">python_version = 3.9</span><br><span class="line"><span class="addition">+ exclude = module/</span></span><br></pre></td></tr></table></figure>
+
+<p>To add more directories or files to exclude, the <a href="https://mypy.readthedocs.io/en/stable/config_file.html#confval-exclude">exclude</a> configuration looks like:</p>
+<figure class="highlight diff"><figcaption><span>mypy.ini</span></figcaption><table><tr><td class="code"><pre><span class="line">[mypy]</span><br><span class="line">python_version = 3.9</span><br><span class="line"><span class="addition">+exclude = (?x)(</span></span><br><span class="line"><span class="addition">+    module/</span></span><br><span class="line"><span class="addition">+    | main.py$ # the `)` could also be put immediately after `$` like `$)`</span></span><br><span class="line"><span class="addition">+ ) # else note this is not a typo, at least one space is needed before `)`, else parsing error occurs</span></span><br></pre></td></tr></table></figure>
+
+<p>Since everything is excluded, now running <code>mypy .</code> should check no files!</p>
+<p>As usual, running <code>pre-commit run --all-files</code> now checks all 4 Python files and report 2 errors, because <code>mypy</code> hook in <code>pre-commit run --all-files</code> does not read <code>exclude</code> configuration in <code>mypy.ini</code>. Add <code>exclude</code> configuration to <code>.pre-commit-config.yaml</code>:</p>
+<figure class="highlight diff"><figcaption><span>.pre-commit-config.yaml</span></figcaption><table><tr><td class="code"><pre><span class="line">repos:</span><br><span class="line">\- repo: https://github.com/pre-commit/mirrors-mypy</span><br><span class="line">  rev: v0.931</span><br><span class="line">  hooks:</span><br><span class="line">  - id: mypy</span><br><span class="line"><span class="addition">+   exclude: module</span></span><br><span class="line">    additional_dependencies:</span><br><span class="line">    - types-requests==2.27.9</span><br></pre></td></tr></table></figure>
+
+<p>Running <code>pre-commit run --all-files</code> should only report <strong>one</strong> error from <code>main.py</code> now. Again, the <code>exclude</code> configuration for <code>mypy</code> hook in <code>pre-commit</code> is using regex ^_^</p>
+<h3 id="Other-configurations"><a href="#Other-configurations" class="headerlink" title="Other configurations?"></a>Other configurations?</h3><p>From my trial and error, <code>mypy</code> hook respects type check configurations like <code>disallow_any_unimported</code> and per-module options under syntax like<code>[mypy-mymodule]</code>.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>As one of the comment from <a href="https://github.com/pre-commit/mirrors-mypy/issues/24#issuecomment-830630682">this issue</a>:</p>
+<blockquote>
+<p>i’ve got the same problem. it’s annoying to have to have two sources of truth for which files to include (mypy.ini and pre-commit config)</p>
+</blockquote>
+<p>I also found it is annoying to have configurations for the same plugin at different places, but sadly this is the case for <code>mypy</code>.</p>
+<p>For me, I would put <code>files</code>, <code>exclude</code> and <code>additional_dependencies</code> configurations in <code>.pre-commit-config.yaml</code>, leave the rest in <code>mypy.ini</code> and always run <code>pre-commit run --all-files</code> to check instead of <code>mypy</code> command. Add <code>pre-commit</code> to git hook scripts locally so that it get executed automatically on <code>git commit</code> and put it as part of the CI process if possible.</p>
+<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><p><a href="https://stackoverflow.com/questions/37557411/why-does-defining-the-argument-types-for-eq-throw-a-mypy-type-error">Why does defining the argument types for __eq__ throw a MyPy type error?</a></p>
+<p><a href="https://github.com/python/mypy/issues/3004">What to do about setters of a different type than their property?</a></p>
+<p><a href="https://github.com/pre-commit/mirrors-mypy/issues/24">“files” configuration in mypy.ini is ignored for mirrors-mypy</a></p>
+<p><a href="https://mypy.readthedocs.io/">mypy documentation</a></p>
 ]]></content>
       <categories>
+        <category>python</category>
         <category>setup</category>
-        <category>vscode</category>
       </categories>
       <tags>
-        <tag>markdown</tag>
-        <tag>vscode</tag>
-        <tag>setup</tag>
-        <tag>vscode extension</tag>
+        <tag>python</tag>
+        <tag>mypy</tag>
+        <tag>pre-commit</tag>
+        <tag>mypy configuration</tag>
+        <tag>pre-commit configuration</tag>
       </tags>
   </entry>
 </search>
