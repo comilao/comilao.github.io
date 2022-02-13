@@ -427,4 +427,79 @@
         <tag>pre-commit configuration</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Precision and representation of number in Python</title>
+    <url>/python/research/2_python_precision/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><blockquote>
+<p>Python can handle precision of floating point numbers</p>
+</blockquote>
+<p>That’s one of the common findings from Google when searching “Precision in Python”.</p>
+<p>In one of my company’s projects, I need to either multiply a number or divide a number by 10^8, and return the result in string format. In primary school Math class, we can move the decimal point forward/backward and add/remove zero accordingly along the way. However, when I start doing this task with <code>*</code> or <code>\</code> directly and apply <code>str()</code> to the result in Python, things began to get really complicated and interesting, results like <code>&quot;0.08353999999999999&quot;</code> (a precision issue) and <code>&quot;1e-08&quot;</code> (a representation issue)  are returned.</p>
+<span id="more"></span>
+
+<h2 id="Precision-Issue"><a href="#Precision-Issue" class="headerlink" title="Precision Issue"></a>Precision Issue</h2><p>From <a href="https://docs.python.org/3/tutorial/floatingpoint.html">Floating Point Arithmetic: Issues and Limitations</a></p>
+<blockquote>
+<p>Computer hardware is base 2, hence for the fraction 1/3, it is approximately <code>0.3</code>, <code>0.33</code> or <code>0.333</code>, but no matter how many digits we’are willing to write down, the result will never be exactly 1/3, but will be an increasingly better approximation of 1/3.</p>
+</blockquote>
+<h3 id="Inaccurate-floating-point-calculation"><a href="#Inaccurate-floating-point-calculation" class="headerlink" title="Inaccurate floating point calculation"></a>Inaccurate floating point calculation</h3><p>Consider this calculation in Python:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">8.354</span>/<span class="number">100</span></span><br><span class="line"><span class="number">0.08353999999999999</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Since we cannot store an infinite number in the memory due to how a base-10 number is represented in base-2, especially for floating point. The issue now becomes up to how many decimal points do we want to keep the accuracy.</p>
+<h4 id="1-With-decimal"><a href="#1-With-decimal" class="headerlink" title="1. With decimal"></a>1. With <code>decimal</code></h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> decimal <span class="keyword">import</span> Decimal, localcontext</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> localcontext() <span class="keyword">as</span> ctx:</span><br><span class="line">    ctx.prec = <span class="number">10</span> <span class="comment"># or a even higher precision</span></span><br><span class="line">    res = Decimal(value=<span class="string">&quot;0.854&quot;</span>, context=ctx) / <span class="number">100</span> <span class="comment"># res is 0.00854 with high precision</span></span><br><span class="line"></span><br><span class="line">res = +res <span class="comment"># res is 0.00854 still, but rounded back to the default precision</span></span><br></pre></td></tr></table></figure>
+
+<p>I got this idea from <a href="https://github.com/ethereum/eth-utils/blob/master/eth_utils/currency.py">ethereum currency conversion</a>. Basically we set a sufficiently high precision and perform a high precision calculation (999 is used for the Ethereum currency conversion). Do note that in order to preserve the precision of the constructed decimal object, the <code>value</code> parameter is better to be <code>str</code> type then <code>float</code>.</p>
+<p>(Try with <code>Decimal(value=0.854, context=ctx)</code> and have a look🤪)</p>
+<p>I also did some further readings on <code>Decimal</code> library, it is mainly used for the banking and financial industry, since accuracy is very important. However, there is a tradeoff of slow performance by using this library. (I once read an old news, a bank employee wrote a code to transfer the tiny bits beyond the displayed balance to his own account, this employee made lots of money from it because of the large amount of daily transactions.)</p>
+<h4 id="2-With-round"><a href="#2-With-round" class="headerlink" title="2. With round()"></a>2. With <code>round()</code></h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">d = <span class="number">8.354</span> / <span class="number">100</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">round</span>(d, <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>round()</code> rounds a number to a given precision in decimal digits.</p>
+<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>I choose the Ethereum method over <code>round()</code>, as the input value of my conversion function could be string type. Converting a string type to a type that <code>round()</code> supports requires an extra step, which might cause some unexpected behaviours.</p>
+<h2 id="Representation-Issue"><a href="#Representation-Issue" class="headerlink" title="Representation Issue"></a>Representation Issue</h2><p>In my case, I need to return the string type of the floating point result as it is, instead of scientific notation. This means result of <code>1 / 10 **8</code> should be returned as <code>&quot;0.00000001&quot;</code> not <code>&quot;1e-08&quot;</code>.</p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> decimal <span class="keyword">import</span> Decimal, localcontext</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> localcontext() <span class="keyword">as</span> ctx:</span><br><span class="line">    ctx.prec = <span class="number">10</span></span><br><span class="line">    num = Decimal(value=<span class="string">&quot;1&quot;</span>, context=ctx) / <span class="number">10</span>**<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;%f&quot;</span> % num)          <span class="comment"># 0.000000</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;num:f&#125;</span>&quot;</span>)          <span class="comment"># 0.0000000001</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;:f&#125;&quot;</span>.<span class="built_in">format</span>(num))  <span class="comment"># 0.0000000001</span></span><br></pre></td></tr></table></figure>
+
+<p>Note: <code>.format()</code> uses full precision while <code>%f</code> defaults to a precision of 6.</p>
+<h3 id="Discussion-1"><a href="#Discussion-1" class="headerlink" title="Discussion"></a>Discussion</h3><p>Division in Python is tricky, as the result is always <code>float</code> type, even for integer division with no remainder, hence a tidy up step is neeed.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = <span class="number">100</span> / <span class="number">10</span>                    <span class="comment"># res is 10.0   float type</span></span><br><span class="line">res = <span class="built_in">str</span>(res)                    <span class="comment"># res is &quot;10.0&quot; str type</span></span><br><span class="line">res = res.rstrip(<span class="string">&quot;0&quot;</span>).rstrip(<span class="string">&quot;.&quot;</span>) <span class="comment"># res is &quot;10&quot;   str type</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Other-Methods"><a href="#Other-Methods" class="headerlink" title="Other Methods"></a>Other Methods</h2><blockquote>
+<p>In primary school Math class, we can move the decimal point forward/backward and add/remove zero accordingly along the way.</p>
+</blockquote>
+<p>To tackle ths problem, after discussing it with a friend, he mentioned the pure string manipulation solution just like how we do it in Math class, since the calculation involved is just multiplication or division by 10^x.</p>
+<p>I did not implement this solution though, I just thought about it roughly.</p>
+<p>For multiplication of <code>10 ^8</code></p>
+<ol>
+<li><p>If string does not contain any decimal points, just add 8 zeros at the back of the string, done</p>
+</li>
+<li><p>If string contains 1 decimal point:</p>
+<ol>
+<li>Add 8 zeros at the back of the string</li>
+<li>Move <code>&quot;.&quot;</code> from the current index to the current index + 8 position</li>
+<li>Tidy up the result by <code>result.rstrip(&quot;0&quot;).rstrip(&quot;.&quot;)</code></li>
+</ol>
+<p> (<strong>Note:</strong> Do not do <code>result.rstrip(&quot;0.&quot;)</code>, you may try <code>&quot;10.00&quot;.rstrip(&quot;0.&quot;)</code>🤪)</p>
+</li>
+<li><p>If string contains more than 1 decimal point, this is an invalid input❌</p>
+</li>
+</ol>
+<p>For division of <code>10 ^8</code></p>
+<ol>
+<li>Check string contains 0 or 1 <code>&quot;.&quot;</code>, else it is an invalid input❌</li>
+<li>Add 8 zeros at the front of the string</li>
+<li>Move <code>&quot;.&quot;</code> from the current index to the current index - 8 position</li>
+<li>Tidy up the result by <code>result.lstrip(&quot;0&quot;)</code></li>
+<li>If index 0 of the result is <code>&quot;.&quot;</code>, add a <code>&quot;0&quot;</code> in front of the result</li>
+</ol>
+<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><p><a href="https://docs.python.org/3/tutorial/floatingpoint.html">Floating Point Arithmetic: Issues and Limitations</a></p>
+<p><a href="https://github.com/ethereum/eth-utils/blob/master/eth_utils/currency.py">Ethereum Utilities Currency Conversion Code</a></p>
+<p><a href="https://stackoverflow.com/questions/22490568/converting-a-very-small-python-decimal-into-a-non-scientific-notation-string">Stackoverflow: Converting a very small python Decimal into a non-scientific notation string</a></p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>research</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>precision</tag>
+      </tags>
+  </entry>
 </search>
