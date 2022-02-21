@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-reading.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-reading.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-reading.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"comilao.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"none","post_header":"none","post_body":"none","coll_header":"none","sidebar":"none"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="PrefaceThis blog is a backup referrence for me. It talks about iTerm2 with Oh My Zsh and its various plugins to build an awesome terminal.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iTerm2 with Oh My Zsh on Macbook">
+<meta property="og:url" content="https://comilao.github.io/miscellaneous/backup/backup_shell/index.html">
+<meta property="og:site_name" content="Comilao Learning">
+<meta property="og:description" content="PrefaceThis blog is a backup referrence for me. It talks about iTerm2 with Oh My Zsh and its various plugins to build an awesome terminal.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/JYKZvtG.png">
+<meta property="og:image" content="https://i.imgur.com/hz6pwTm.png">
+<meta property="og:image" content="https://i.imgur.com/8fNOd4F.png">
+<meta property="article:published_time" content="2022-02-21T10:19:03.000Z">
+<meta property="article:modified_time" content="2022-02-21T15:02:52.533Z">
+<meta property="article:author" content="Ma Cong">
+<meta property="article:tag" content="backup">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/JYKZvtG.png">
+
+
+<link rel="canonical" href="https://comilao.github.io/miscellaneous/backup/backup_shell/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://comilao.github.io/miscellaneous/backup/backup_shell/","path":"miscellaneous/backup/backup_shell/","title":"iTerm2 with Oh My Zsh on Macbook"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>iTerm2 with Oh My Zsh on Macbook | Comilao Learning</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Comilao Learning" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Comilao Learning</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prerequisite"><span class="nav-number">2.</span> <span class="nav-text">Prerequisite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iTerm2"><span class="nav-number">3.</span> <span class="nav-text">iTerm2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oh-My-Zsh"><span class="nav-number">4.</span> <span class="nav-text">Oh My Zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Powerline"><span class="nav-number">4.1.</span> <span class="nav-text">Powerline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Powerline-Fonts"><span class="nav-number">4.2.</span> <span class="nav-text">Powerline Fonts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solarized-Color"><span class="nav-number">4.3.</span> <span class="nav-text">Solarized Color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theme"><span class="nav-number">4.4.</span> <span class="nav-text">Theme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configurations"><span class="nav-number">4.5.</span> <span class="nav-text">Configurations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Natual-Text-Selection"><span class="nav-number">4.5.1.</span> <span class="nav-text">Natual Text Selection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Custom-Prompt"><span class="nav-number">4.5.2.</span> <span class="nav-text">Custom Prompt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Maximize-iTerm2"><span class="nav-number">4.5.3.</span> <span class="nav-text">Maximize iTerm2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plugins"><span class="nav-number">4.6.</span> <span class="nav-text">Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh-autosuggestions"><span class="nav-number">4.6.1.</span> <span class="nav-text">zsh-autosuggestions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VS-Code-Issue"><span class="nav-number">5.</span> <span class="nav-text">VS Code Issue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Referrence"><span class="nav-number">6.</span> <span class="nav-text">Referrence</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ma Cong</p>
+  <div class="site-description" itemprop="description">A place to keep track of my learnings</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/comilao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;comilao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://comilao.github.io/miscellaneous/backup/backup_shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ma Cong">
+      <meta itemprop="description" content="A place to keep track of my learnings">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Comilao Learning">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iTerm2 with Oh My Zsh on Macbook
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-02-21 18:19:03 / Modified: 23:02:52" itemprop="dateCreated datePublished" datetime="2022-02-21T18:19:03+08:00">2022-02-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/miscellaneous/" itemprop="url" rel="index"><span itemprop="name">miscellaneous</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/miscellaneous/backup/" itemprop="url" rel="index"><span itemprop="name">backup</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This blog is a backup referrence for me. It talks about iTerm2 with Oh My Zsh and its various plugins to build an awesome terminal.</p>
+<span id="more"></span>
+
+<h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><ul>
+<li>git</li>
+<li>homebrew</li>
+</ul>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>Download <a target="_blank" rel="noopener" href="https://iterm2.com/">iTerm2</a>.</p>
+<p>After installation, a <code>zsh</code> file should appear under <code>/bin</code> directory. To use <code>zsh</code> shell:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+
+<p>To change back to the default <code>bash</code> shell (But trust me, you don’t want to do it after using <code>zsh</code> with <code>Oh My Zsh</code>):</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Oh-My-Zsh"><a href="#Oh-My-Zsh" class="headerlink" title="Oh My Zsh"></a>Oh My Zsh</h2><p>Install <a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh#basic-installation">Oh My Zsh</a>.</p>
+<h3 id="Powerline"><a href="#Powerline" class="headerlink" title="Powerline"></a>Powerline</h3><p><a target="_blank" rel="noopener" href="https://powerline.readthedocs.io/en/latest/overview.html">Powerline Homepage</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install powerline-status --user</span><br></pre></td></tr></table></figure>
+
+<h3 id="Powerline-Fonts"><a href="#Powerline-Fonts" class="headerlink" title="Powerline Fonts"></a>Powerline Fonts</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/powerline/fonts.git --depth=1</span><br><span class="line">cd fonts</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
+
+<p>After installing Powerline Fonts, go to <code>iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text</code> and look for <code>Font</code> to change it. I used <code>Meslo LG L for Powerline</code> L size font.</p>
+<img src="https://i.imgur.com/JYKZvtG.png" alt="change_iTerm2_Font" width="80%" height="80%">
+
+<h3 id="Solarized-Color"><a href="#Solarized-Color" class="headerlink" title="Solarized Color"></a>Solarized Color</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/altercation/solarized</span><br><span class="line">cd solarized/iterm2-colors-solarized/</span><br><span class="line">open .</span><br></pre></td></tr></table></figure>
+
+<p>This opens finder window, by double clicking <code>Solarized Dark.itermcolors</code> or <code>Solarized Light.itermcolors</code> file to install the color. Then go to <code>iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Colors -&gt; Colors Presets</code> to choose you preferred color.</p>
+<h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git</span><br><span class="line">cd oh-my-zsh-agnoster-fcamblor/</span><br><span class="line">./install</span><br></pre></td></tr></table></figure>
+
+<p>The above command installs agnoster theme to Oh My Zsh themes. Look for <code>ZSH_THEME</code> in <code>~/.zshrc</code> to make the theme changes:</p>
+<figure class="highlight diff"><figcaption><span>$HOME/.zshrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- ZSH_THEME=&quot;robbyrussell&quot;</span></span><br><span class="line"><span class="addition">+ ZSH_THEME=&quot;agnoster&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>After that, either relaunch <code>iTerm2</code> or with <code>source ~/.zshrc</code> command to apply the latest zsh configuration.</p>
+<h3 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h3><h4 id="Natual-Text-Selection"><a href="#Natual-Text-Selection" class="headerlink" title="Natual Text Selection"></a>Natual Text Selection</h4><p>By default, word jumps (<code>option</code> + <code>→</code> or <code>←</code>) and word deletions (<code>option</code> + <code>backspace</code>) do not work. To enable them, go to <code>iTerm -&gt; Preferences -&gt; Profiles -&gt; Keys -&gt; Key Mappings</code>, look for  <code>Presets...</code> and change to <code>Natural Text Editing</code>.</p>
+<img src="https://i.imgur.com/hz6pwTm.png" alt="change_iTerm2_Natual_Text_Selection" width="80%" height="80%">
+
+<h4 id="Custom-Prompt"><a href="#Custom-Prompt" class="headerlink" title="Custom Prompt"></a>Custom Prompt</h4><p>By default, your terminal will now show “user@hostname” in the prompt, which might be too long. To remove this, you can add the line <code>DEFAULT_USER=$(whoami)</code> to <code>~/.zshrc</code>.</p>
+<h4 id="Maximize-iTerm2"><a href="#Maximize-iTerm2" class="headerlink" title="Maximize iTerm2"></a>Maximize iTerm2</h4><p>Personally, I prefer to use a shell in the maximized window. Go to <code>iTerm -&gt; Preferences -&gt; Profiles -&gt; Window</code>, look for the <code>Style</code> section and change to <code>Maximized</code> option.</p>
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>There are <a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">many many plugins</a> available for <code>Oh My Zsh</code>. For me, I use the following plugins:</p>
+<figure class="highlight plaintext"><figcaption><span>$HOME/.zshrc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">git</span><br><span class="line">zsh-autosuggestions</span><br><span class="line">zsh-syntax-highlighting</span><br><span class="line">autojump</span><br><span class="line">k</span><br><span class="line">copydir</span><br><span class="line">copyfile</span><br><span class="line">copybuffer</span><br><span class="line">jsontools</span><br><span class="line">macos</span><br><span class="line">web-search</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Below are the web pages I have referred to when researching the top popular plugins:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LEOqiyxx16c&t=256s">Top 10 Oh My Zsh Plugins For Productive Developers - Travis Media (The timestamp I used for this YouTube video shows all the plugins introduced in the video)</a></li>
+<li><a target="_blank" rel="noopener" href="https://safjan.com/top-popular-zsh-plugins-on-github/">Top popular Zsh plugins on GitHub - Krystian Safjan’s Blog</a></li>
+</ol>
+<p>For adding plugins, you could try to add them in the <code>~/.zshrc</code> configuration file and apply the settings by <code>source ~/.zshrc</code>. Some plugins are already installed by <code>Oh My Zsh</code>, those plugins are not installed will be prompted. You can install them accordingly. Installation guides for some plugins:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/wting/autojump#installation">autojump</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh">zsh-autosuggestions</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh">zsh-syntax-highlighting</a></li>
+</ul>
+<h4 id="zsh-autosuggestions"><a href="#zsh-autosuggestions" class="headerlink" title="zsh-autosuggestions"></a>zsh-autosuggestions</h4><p>For this plugin, the color for the auto suggested command lines might be too close to the background. To change auto suggested command color, go to <code>iTerm -&gt; Preferences -&gt; Profiles -&gt; Colors -&gt; ANSI Colors</code>, the first one in the Bright column is the auto suggested command color setting. For me, I used <code>80% Gray</code>.</p>
+<img src="https://i.imgur.com/8fNOd4F.png" alt="iTerm2_change_auto_suggested_command_color" width="80%" height="80%">
+
+<h2 id="VS-Code-Issue"><a href="#VS-Code-Issue" class="headerlink" title="VS Code Issue"></a>VS Code Issue</h2><p>For the embedded terminal in VS Code, it might not properly represent the powerline prompt. To fix it, go to <code>Code -&gt; Preferences -&gt; Settings</code>, toggle to the JSON configuration file and change:</p>
+<figure class="highlight diff"><figcaption><span>settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line">    // zsh terminal and font fix for vscode</span><br><span class="line"><span class="addition">+    &quot;terminal.integrated.defaultProfile.osx&quot;: &quot;zsh&quot;,</span></span><br><span class="line"><span class="addition">+    &quot;terminal.integrated.fontFamily&quot;: &quot;Menlo for Powerline&quot;,</span></span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong> It is recommended to use the <strong>User</strong> level  here, as we would like to apply these settings to the entire VS Code editor, not only a single project</p>
+<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><p><a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/136928/using-alt-cmd-right-left-arrow-in-iterm/218639#218639">Using Alt/Cmd + Right/Left Arrow in iTerm</a></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/kevin-smets/8568070">iTerm2 + Oh My Zsh + Solarized color scheme + Source Code Pro Powerline + Font Awesome + [Powerlevel10k] - (macOS)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37195261">iTerm2 + Oh My Zsh (In Chinese)</a></p>
+<p><a target="_blank" rel="noopener" href="https://dev.to/mattstratton/making-powerline-work-in-visual-studio-code-terminal-1m7">Fix powerline in VS Code</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/backup/" rel="tag"># backup</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/python/research/2_python_precision/" rel="prev" title="Precision and representation of number in Python">
+                  <i class="fa fa-chevron-left"></i> Precision and representation of number in Python
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ma Cong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

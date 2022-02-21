@@ -161,18 +161,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -313,8 +313,8 @@
 <td>2022/01/21/hello-world/</td>
 </tr>
 </tbody></table>
-<h3 id="Post-Layout"><a href="#Post-Layout" class="headerlink" title="Post Layout"></a>Post Layout</h3><p><em>Personally</em>, I prefer to add <code>updated</code> and <code>categories</code> in the default post layout, this two extra properties can help with better organization.</p>
-<figure class="highlight diff"><figcaption><span>./scaffolds/post.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">---</span></span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="addition">+ updated:</span></span><br><span class="line"><span class="addition">+ categories:</span></span><br><span class="line">tags:</span><br><span class="line"><span class="comment">---</span></span><br></pre></td></tr></table></figure>
+<h3 id="Post-Layout"><a href="#Post-Layout" class="headerlink" title="Post Layout"></a>Post Layout</h3><p><em>Personally</em>, I prefer to add <code>updated</code> and <code>categories</code> in the default post layout, this two extra properties can help with better organization. I also like to have a <strong>Preface</strong> section with a <strong>more</strong> button to provide a quick summary of the blog post without occupying lots of space by showing the whole article.</p>
+<figure class="highlight diff"><figcaption><span>./scaffolds/post.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">---</span></span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="addition">+ updated:</span></span><br><span class="line"><span class="addition">+ categories:</span></span><br><span class="line">tags:</span><br><span class="line"><span class="comment">---</span></span><br><span class="line"></span><br><span class="line">## Preface</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><p><em>Personally</em>, the default theme is not very aesthetic appealing to me. I decided to change to <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Next</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;hexo_folder&gt;</span><br><span class="line">npm install hexo-theme-next</span><br><span class="line"><span class="comment"># optional: remove landscape theme node package and configuration file</span></span><br><span class="line">npm uninstall hexo-theme-landscape</span><br><span class="line">rm _config.landscape.yml</span><br></pre></td></tr></table></figure>
