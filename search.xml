@@ -506,7 +506,7 @@
   <entry>
     <title>iTerm2 with Oh My Zsh on Macbook</title>
     <url>/miscellaneous/backup/backup_shell/</url>
-    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This blog is a backup referrence for me. It talks about iTerm2 with Oh My Zsh and its various plugins to build an awesome terminal.</p>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This post is a backup referrence for me. It talks about iTerm2 with Oh My Zsh and its various plugins to build an awesome terminal.</p>
 <span id="more"></span>
 
 <h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><ul>
@@ -575,6 +575,43 @@
       </categories>
       <tags>
         <tag>backup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python max() vs if else</title>
+    <url>/python/research/4_python_max_ifelse/</url>
+    <content><![CDATA[<h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>This post discusses some interesting findings about <code>max()</code> and <code>if...else</code> when comparing 2 elements. I have this doubt while doing <a href="https://leetcode.com/problems/maximum-subarray/">LeetCode Problem 53. Maximum Subarray</a>.</p>
+<span id="more"></span>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>LeetCode Problem 53:</p>
+<blockquote>
+<p>Given an integer array <code>nums</code>, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. (A <strong>subarray</strong> is a <strong>contiguous</strong> part of an array.)</p>
+</blockquote>
+<p>My first attempt to this question is:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">nums</span>):</span></span><br><span class="line">    max_sum, temp = <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>), <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        temp = <span class="built_in">max</span>(temp + num, num)</span><br><span class="line">        max_sum = <span class="built_in">max</span>(max_sum, temp)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max_sum</span><br></pre></td></tr></table></figure>
+
+<p>This solution’s runtime is 1101ms which only beats 38.56% of Python3 submissions. To further optimize the runtime, I changed to the solution below:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">nums</span>):</span></span><br><span class="line">    max_sum, temp = <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>), <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        temp = <span class="built_in">max</span>(temp + num, num)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> temp &gt; max_sum:</span><br><span class="line">            max_sum = temp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max_sum</span><br></pre></td></tr></table></figure>
+
+<p>After reducing some unnecessary computations from <code>max()</code>, this solution has a runtime of 696ms which beats <strong>96.94%</strong> of Python3 submissions. Then I have a question of which method is faster when comparing just 2 elements.</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">count, num_1, num_2 = <span class="number">10</span>**<span class="number">8</span>, <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(count):</span><br><span class="line">    r = num_1 <span class="keyword">if</span> num_1 &gt; num_2 <span class="keyword">else</span> num_2</span><br><span class="line">res_if = time.time() - start</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(count):</span><br><span class="line">    r = <span class="built_in">max</span>(num_1, num_2)</span><br><span class="line">res_max = time.time() - start</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;res_if:<span class="subst">&#123;res_if&#125;</span>; res_max:<span class="subst">&#123;res_max&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Result on my computer:</span></span><br><span class="line"><span class="comment">#res_if:9.846304178237915; res_max:23.544015884399414</span></span><br></pre></td></tr></table></figure>
+
+<p>As we have observed, using <code>if...else</code> is much faster than <code>max()</code> when comparing 2 elements.</p>
+<h2 id="Research"><a href="#Research" class="headerlink" title="Research"></a>Research</h2><p>My first thought is even for just two elements, <code>max()</code> still needs to loop through the two elements, which is a huge time for large number of calls, but for <code>if...else</code>, the comparison is direct and fast.</p>
+<p>However, after research online, this <a href="https://stackoverflow.com/questions/56281691/why-is-max-function-so-much-slower-when-comparing-2-elements-vs-direct-compari">Stack Overflow Answer</a> provides another perspective:</p>
+<blockquote>
+<p>because <code>max</code> involves a dictionary lookup for the function name, then a function call, whereas direct <code>&lt;</code> operator does not.</p>
+</blockquote>
+<p>In his answer, the person also points out similar questions like <a href="https://stackoverflow.com/questions/36566331/why-does-dict-getkey-run-slower-than-dictkey">Why is <code>dict.get()</code> slower than <code>dict[key]</code>?</a> and <a href="https://stackoverflow.com/questions/30216000/why-is-faster-than-list">Why is [] faster than list()</a>. These two related questions have the similar answer, where a dictionary lookup for the function name is performed.</p>
+<h2 id="Code-Practice"><a href="#Code-Practice" class="headerlink" title="Code Practice"></a>Code Practice</h2><p>To be honest, before noticing this performance issue on that LeetCode question, I was just blindly using <code>max()</code> for all scenarios. In the future, if I need to get the larger element from just 2 elements, I would use the <code>if...else</code> syntax for its slight faster speed. However, for getting the largest element from more than 2 elements, <code>max()</code> is preferred for readability purpose.</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>research</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>better code</tag>
       </tags>
   </entry>
 </search>
